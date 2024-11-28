@@ -1,25 +1,18 @@
 import { Link } from "react-router-dom";
+import "./home.css";
 
 const NavBar = () => {
-    const navList = [
-        "Fruits",
-        "Vegetables",
-        "Snacks",
-        "Offers",
-        "nav5",
-        "nav6",
-        "nav7",
-        "nav8",
-    ];
+    const navList = ["Fruits", "Vegetables", "Snacks", "Offers"];
 
     return (
-        <div className="bg-[#429A2D] h-12 w-full flex items-center justify-evenly">
+        <div className="navbar bg-[#429A2D] h-12 w-full flex items-center justify-evenly">
             {navList.map((nav, index) => (
                 <Link
                     key={index} // `key` should be on the Link component
                     to={`/category/${nav.toLowerCase()}`} // Dynamic routing, for example: `/fruits`, `/vegetables`, etc.
-                    className="text-white hover:text-gray-100 text-2xl">
+                    className="text-white hover:text-gray text-2xl nav-item">
                     <div className="transition-all duration-100">{nav}</div>
+                    <div className="under-highlight w-full h-[1px] bg-white opacity-0 transition-all"></div>
                 </Link>
             ))}
         </div>
