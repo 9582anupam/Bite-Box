@@ -9,6 +9,7 @@ module.exports = {
         merriweathers: ['Merriweather', 'serif'],
         nunito: ['Nunito', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
+        raleway: ['Raleway', 'sans-serif'],
       },
     },
   },

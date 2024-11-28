@@ -56,7 +56,7 @@ const Product = () => {
 
     return (
         <div className="w-full bg-[#E4EDEC] flex justify-center pt-24">
-            <div className="w-11/12 md:w-10/12">
+            <div className="lg:px-20 md: sm: px-4 w-full">
                 {categories.map((category) => (
                     <div key={category} className="mb-32 relative">
                         <p className="text-4xl font-bold text-black mb-2 font-nunito">

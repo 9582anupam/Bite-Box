@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
                     src={product.imageUrl}
                     className="object-contain rounded-md bg-white mx-auto"
                 />
-                <div className="flex flex-col gap-2 bg-[#F8F8F8] font-poppins">
+                <div className="flex flex-col gap-2 bg-[#F8F8F8] font-poppins py-1">
                     <p className="font-semibold text-lg text-black text-center overflow-hidden whitespace-nowrap text-ellipsis">
                         {product.title}
                     </p>
