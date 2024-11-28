@@ -17,7 +17,13 @@ const Hero = () => {
                         vegetables, and groceries. Handpicked for quality,
                         straight from the farm to your home.
                     </p>
-                    <Button color={"#74B83E"} text={"Explore More"} fontSize="text-3xl" image={rightArrow} padding={"px-3 py-2"} />
+                    <Button
+                        color={"#74B83E"}
+                        text={"Explore More"}
+                        fontSize="text-3xl"
+                        image={rightArrow}
+                        padding={"px-3 py-2"}
+                    />
                 </div>
             </div>
         </div>

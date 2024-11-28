@@ -8,29 +8,22 @@ const Button = ({
     hoverColor = "hover:bg-opacity-80", // Default hover effect
     onClick, // On click handler
     customClasses = "", // Additional custom classes
-    image // extra symbol/image in front of the button
+    image, // extra symbol/image in front of the button
+    border,
 }) => {
-    console.log("color: " + color); 
-
     return (
         <div
-            className={`${textColor} ${padding} ${borderRadius} ${fontSize} ${hoverColor} ${customClasses} w-fit flex items-center`}
+            className={`${textColor} ${padding} ${borderRadius} ${fontSize} ${hoverColor} ${customClasses} w-fit flex items-center justify-center`}
             onClick={onClick}
-            style={{ 
-                cursor: "pointer", 
+            style={{
+                cursor: "pointer",
                 backgroundColor: color, // Apply dynamic background color using inline styles
-            }}
-        >
+                border: border,
+            }}>
             <p className="leading-normal">{text}</p>
-            {   
-                image && (
-                    <img
-                        src={image}
-                        alt="button-symbol"
-                        className="h-6 w-6 ml-2"
-                    />
-                )
-            }
+            {image && (
+                <img src={image} alt="button-symbol" className="h-6 w-6 ml-2" />
+            )}
         </div>
     );
 };

@@ -10,7 +10,11 @@ const Header = () => {
         <div className="bg-[#74B83E] h-20 flex items-center justify-evenly gap-4 px-4 w-full ">
             {/* Logo */}
             <div className="flex items-center">
-                <img src={combineLogoText} alt="Combine logo" className="h-16" />
+                <img
+                    src={combineLogoText}
+                    alt="Combine logo"
+                    className="h-16"
+                />
             </div>
 
             {/* Search Bar */}
