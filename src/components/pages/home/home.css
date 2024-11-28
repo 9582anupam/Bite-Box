@@ -4,4 +4,24 @@
         opacity: 1;
         transition: all 100 ease;
     }
+
+}
+
+/* media query */
+@media (max-width: 768px) {
+    .hero {
+        background-image: url('../../../utils//images/hero/hero-bg-mobile.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+@media (min-width: 768px) {
+    .hero {
+        background-image: url('../../../utils//images/hero/hero-bg.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: left;
+    }
+    
 }

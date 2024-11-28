@@ -1,15 +1,15 @@
-import HeroBg from "../../../utils/images/hero/hero-bg.svg";
 import Button from "../../common/Button";
 import rightArrow from "../../../utils/images/hero/right-arrow.svg";
 
 const Hero = () => {
     return (
         <div
-            className="hero h-[calc(100svh-128px)] bg-no-repeat bg-cover bg-center flex justify-center"
-            style={{ backgroundImage: `url(${HeroBg})` }}>
+            className="hero h-[calc(100svh-128px)] flex justify-center"
+            // style={{ backgroundImage: `url(${HeroBg})` }}
+            >
             <div className="w-10/12">
-                <div className="w-[40%] flex flex-col justify-center h-full gap-4 ml-10">
-                    <p className="font-merriweathers font-bold text-[4.4rem] leading-none">
+                <div className=" md:w-[70%] lg:w-[40%] flex flex-col mt-10 md:justify-center h-full gap-6 md:gap-4 md:ml-24 lg:ml-16">
+                    <p className="font-merriweathers font-bold text-[3.3rem] sm:text-[4rem]  md:text-[4.4rem] leading-none">
                         Freshness Delivered to Your Doorstep
                     </p>
                     <p className="font-merriweathers italic text-lg leading-6">

@@ -5,7 +5,7 @@ const NavBar = () => {
     const navList = ["Fruits", "Vegetables", "Snacks", "Offers"];
 
     return (
-        <div className="navbar bg-[#429A2D] h-12 w-full flex items-center justify-evenly">
+        <div className="navbar bg-[#429A2D] h-12 w-full md:flex items-center justify-evenly hidden">
             {navList.map((nav, index) => (
                 <Link
                     key={index} // `key` should be on the Link component

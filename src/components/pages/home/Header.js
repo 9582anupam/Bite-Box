@@ -2,12 +2,13 @@ import combineLogoText from "../../../utils/images/logo/combine-logo-text-white.
 
 import user from "../../../utils/images/header/user.svg";
 import cart from "../../../utils/images/header/cart.svg";
+import ham from "../../../utils/images/header/ham.svg";
 import SearchBar from "../../common/SearchBar";
 import Button from "../../common/Button";
 
 const Header = () => {
     return (
-        <div className="bg-[#74B83E] h-20 flex items-center justify-evenly gap-4 px-4 w-full ">
+        <div className="bg-[#74B83E] h-20 flex items-center justify-between gap-4 px-8 w-full ">
             {/* Logo */}
             <div className="flex items-center">
                 <img
@@ -18,12 +19,12 @@ const Header = () => {
             </div>
 
             {/* Search Bar */}
-            <div className="w-1/3">
+            <div className="w-1/3 md:block hidden">
                 <SearchBar />
             </div>
 
             {/* Location */}
-            <Button color={"#FFFFFF"} text={"Location"} textColor={"#00000"} />
+            <Button color={"#FFFFFF"} text={"Location"} textColor={"#00000"} customClasses="md:block hidden" />
 
             {/* User/Cart */}
             <div className="flex gap-4">
@@ -34,6 +35,11 @@ const Header = () => {
                 {/* User */}
                 <div>
                     <img src={user} alt="User" className="h-12" />
+                </div>
+                    
+                {/* Hamburger */}
+                <div className="md:hidden block">
+                    <img src={ham} alt="ham" className="h-12" />
                 </div>
             </div>
         </div>
