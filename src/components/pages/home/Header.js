@@ -6,7 +6,7 @@ import ham from "../../../utils/images/header/ham.svg";
 import SearchBar from "../../common/SearchBar";
 import Button from "../../common/Button";
 
-const Header = () => {
+const Header = ({ setIsSidebarActive, isSidebarActive }) => {
     return (
         <div className="bg-[#74B83E] h-20 flex items-center justify-between gap-4 px-8 w-full ">
             {/* Logo */}
@@ -24,7 +24,12 @@ const Header = () => {
             </div>
 
             {/* Location */}
-            <Button color={"#FFFFFF"} text={"Location"} textColor={"#00000"} customClasses="md:block hidden" />
+            <Button
+                color={"#FFFFFF"}
+                text={"Location"}
+                textColor={"#00000"}
+                customClasses="md:block hidden"
+            />
 
             {/* User/Cart */}
             <div className="flex gap-4">
@@ -36,9 +41,11 @@ const Header = () => {
                 <div>
                     <img src={user} alt="User" className="h-12" />
                 </div>
-                    
+
                 {/* Hamburger */}
-                <div className="md:hidden block">
+                <div
+                    className="md:hidden block"
+                    onClick={() => setIsSidebarActive(!isSidebarActive)}>
                     <img src={ham} alt="ham" className="h-12" />
                 </div>
             </div>
