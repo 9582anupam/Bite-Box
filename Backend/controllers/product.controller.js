@@ -77,6 +77,11 @@ const getProductByCategory = async (req, res) => {
 const getAllProductsStructuredByCategory = async (req, res) => {
     try {
         const products = await Product.find({});
+        const topRated = await Product.find({ rating: { $gt: 4.7 } });
+        const topOffer = await Product.find({ discount: { $gt: 0.19 } });
+        const todaysDeal = await Product.aggregate([
+            { $sample: { size: 30 } },
+        ]);
         let structuredProducts = {};
         products.forEach((product) => {
             if (structuredProducts[product.category]) {
@@ -85,6 +90,9 @@ const getAllProductsStructuredByCategory = async (req, res) => {
                 structuredProducts[product.category] = [product];
             }
         });
+        structuredProducts["Top Rated"] = topRated;
+        structuredProducts["Top Offer"] = topOffer;
+        structuredProducts["Todays Deal"] = todaysDeal;
         return res.status(200).json({
             message: "List of products structured by category",
             products: structuredProducts,
@@ -100,4 +108,10 @@ const getAllProductsStructuredByCategory = async (req, res) => {
     }
 };
 
-export { getAllProducts, getProductById, createProduct, getProductByCategory, getAllProductsStructuredByCategory };
+export {
+    getAllProducts,
+    getProductById,
+    createProduct,
+    getProductByCategory,
+    getAllProductsStructuredByCategory,
+};
