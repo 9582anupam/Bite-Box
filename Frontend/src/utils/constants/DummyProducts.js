@@ -89,7 +89,7 @@ export const productData = {
             newPrice: "$250.00",
         },
     ],
-    "Best Seller": [
+    "Top Rated": [
         {
             id: 13,
             imageUrl: cheekuImg,

@@ -101,8 +101,8 @@ const Footer = () => {
                         <h3 className="font-bold text-3xl mb-3">Connect</h3>
                         <div className="flex gap-2 cursor-pointer">
                             {socialMedia.map((icon, index) => (
-                                <div>
-                                    <img key={index} src={icon} alt={icon.name} className="w-8" />
+                                <div key={index}>
+                                    <img src={icon} alt={icon.name} className="w-8" />
                                 </div>
                             ))}
                         </div>

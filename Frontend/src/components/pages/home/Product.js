@@ -48,7 +48,7 @@ const Product = () => {
     const categories = [
         "Todays Deal",
         "Top Offer",
-        "Best Seller",
+        "Top Rated",
         "Fruits",
         "Vegetables",
         "Snacks",
