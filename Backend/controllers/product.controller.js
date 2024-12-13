@@ -3,7 +3,6 @@ import { Product } from "../models/product.models.js";
 
 const getAllProducts = async (req, res) => {
     try {
-        // Get all products from the Product model
         const products = await Product.find({});
 
         return res.status(200).json({
@@ -56,4 +55,25 @@ const createProduct = async (req, res) => {
     }
 };
 
-export { getAllProducts, getProductById, createProduct };
+const getProductByCategory = async (req, res) => {
+    try {
+        const category = req.params.category;
+        const products = await Product.find({ category: category });
+        return res.status(200).json({
+            message: "List of products by category",
+            products: products,
+            status: 200,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Internal server error",
+            status: 500,
+            error: error.message,
+        });
+    }
+};
+
+
+
+export { getAllProducts, getProductById, createProduct, getProductByCategory };

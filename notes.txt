@@ -1,0 +1,3 @@
+top rated: based on rating
+top offers: based on discount
+todays deal: random 30
