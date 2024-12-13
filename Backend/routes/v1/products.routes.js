@@ -1,7 +1,13 @@
 import express from "express";
 const router = express.Router();
 
-import { getAllProducts, getProductById, createProduct, getProductByCategory } from "../../controllers/product.controller.js";
+import {
+    getAllProducts,
+    getProductById,
+    createProduct,
+    getProductByCategory,
+    getAllProductsStructuredByCategory,
+} from "../../controllers/product.controller.js";
 
 // Example product routes
 router.get("/", (req, res) => {
@@ -14,5 +20,7 @@ router.route("/product/:id").get(getProductById);
 router.route("/product").post(createProduct);
 
 router.route("/category/:category").get(getProductByCategory);
+
+router.route("/structured").get(getAllProductsStructuredByCategory);
 
 export default router;

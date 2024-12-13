@@ -1,11 +1,15 @@
 import SliderTemplate from "../../common/SliderTemplate";
-import { productData } from "../../../utils/constants/DummyProducts";
 import Button from "../../common/Button";
 import rightArrow from "../../../utils/images/product/right-arrow.svg";
 import ProductCard from "../../common/ProductCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Product = () => {
     // Define responsive settings for carousel
+
+    const [products, setProducts] = useState([]);
+
     const responsive = {
         superLargeDesktop1: {
             breakpoint: { max: 4000, min: 3000 },
@@ -44,28 +48,34 @@ const Product = () => {
         },
     };
 
-    // Categories for rendering
-    const categories = [
-        "Todays Deal",
-        "Top Offer",
-        "Top Rated",
-        "Fruits",
-        "Vegetables",
-        "Snacks",
-    ];
+    // Fetch products from backend
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const backendUrl = process.env.REACT_APP_BACKEND_URL;
+                const response = await axios.get(
+                    `${backendUrl}/api/v1/products/structured`
+                );
+                setProducts((response.data.products));
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchProducts();
+    }, []);
 
     return (
-        <div className="w-full bg-[#E4EDEC] flex justify-center pt-24">
+        <div className="w-full bg-[#E4EDEC] flex justify-center pt-24 select-none">
             <div className="lg:px-20 md: sm: px-4 w-full">
-                {categories.map((category) => (
+                {products && Object.keys(products).map((category) => (
                     <div key={category} className="mb-32 relative">
                         <p className="text-4xl font-bold text-black mb-2 font-nunito">
                             {category}
                         </p>
                         <SliderTemplate responsive={responsive}>
-                            {productData[category]?.map((product) => (
+                            {products[category]?.map((product) => (
                                 <ProductCard
-                                    key={product.id}
+                                    key={product.productId}
                                     product={product}
                                 />
                             ))}

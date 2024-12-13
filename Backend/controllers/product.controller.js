@@ -74,6 +74,30 @@ const getProductByCategory = async (req, res) => {
     }
 };
 
+const getAllProductsStructuredByCategory = async (req, res) => {
+    try {
+        const products = await Product.find({});
+        let structuredProducts = {};
+        products.forEach((product) => {
+            if (structuredProducts[product.category]) {
+                structuredProducts[product.category].push(product);
+            } else {
+                structuredProducts[product.category] = [product];
+            }
+        });
+        return res.status(200).json({
+            message: "List of products structured by category",
+            products: structuredProducts,
+            status: 200,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Internal server error",
+            status: 500,
+            error: error.message,
+        });
+    }
+};
 
-
-export { getAllProducts, getProductById, createProduct, getProductByCategory };
+export { getAllProducts, getProductById, createProduct, getProductByCategory, getAllProductsStructuredByCategory };
