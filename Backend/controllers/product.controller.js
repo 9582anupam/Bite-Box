@@ -93,6 +93,7 @@ const getAllProductsStructuredByCategory = async (req, res) => {
         structuredProducts["Top Rated"] = topRated;
         structuredProducts["Offers"] = topOffer;
         structuredProducts["Todays Deal"] = todaysDeal;
+        await new Promise(resolve => setTimeout(resolve, 1000));
         return res.status(200).json({
             message: "List of products structured by category",
             products: structuredProducts,

@@ -36,7 +36,7 @@ const SliderTemplate = ({ children, responsive }) => {
                 responsive={responsive}
                 infinite={true}
                 autoPlay={true}
-                autoPlaySpeed={3000}
+                autoPlaySpeed={30000}
                 transitionDuration={500}
                 containerClass="carousel-container"
                 removeArrowOnDeviceType={["tablet", "mobile"]}

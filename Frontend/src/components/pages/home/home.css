@@ -46,3 +46,21 @@
     right: 0; /* Move the sidebar into view */
     opacity: 1; /* Make it visible */
 }
+
+
+
+
+.shimmer {
+    animation: shimmer 1.5s infinite;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e4e4e4 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}

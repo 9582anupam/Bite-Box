@@ -4,11 +4,11 @@ import rightArrow from "../../../utils/images/product/right-arrow.svg";
 import ProductCard from "../../common/ProductCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ProductCardShimmer from "../../common/ProductCardShimmer";
 
 const Product = () => {
-    // Define responsive settings for carousel
-
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true); // Add a loading state
 
     const responsive = {
         superLargeDesktop1: {
@@ -56,9 +56,11 @@ const Product = () => {
                 const response = await axios.get(
                     `${backendUrl}/api/v1/products/structured`
                 );
-                setProducts((response.data.products));
+                setProducts(response.data.products);
+                setLoading(false); // Set loading to false once data is fetched
             } catch (error) {
                 console.log(error);
+                setLoading(false); // Set loading to false in case of error
             }
         };
         fetchProducts();
@@ -67,30 +69,56 @@ const Product = () => {
     return (
         <div className="w-full bg-[#E4EDEC] flex justify-center pt-24 select-none">
             <div className="lg:px-20 md: sm: px-4 w-full">
-                {products && Object.keys(products).map((category) => (
-                    <div key={category} className="mb-32 relative">
-                        <p className="text-4xl font-bold text-black mb-2 font-nunito">
-                            {category}
-                        </p>
-                        <SliderTemplate responsive={responsive}>
-                            {products[category]?.map((product) => (
-                                <ProductCard
-                                    key={product.productId}
-                                    product={product}
-                                />
-                            ))}
-                        </SliderTemplate>
-                        <Button
-                            text="Explore More"
-                            color={"#F5FBF4"}
-                            textColor={"text-[#74B83E]"}
-                            fontSize="text-2xl"
-                            border={"1px solid"}
-                            image={rightArrow}
-                            customClasses="absolute right-0 font-poppins"
-                        />
-                    </div>
-                ))}
+                {loading
+                    ? // Display shimmer skeleton while loading
+                      Array.from([1,2,3,4,5,6]).map((i, index) => (
+                          <div key={index} className="mb-32 relative">
+                              <p className="text-4xl font-bold text-black mb-2 font-nunito">
+                                  category
+                              </p>
+                              <SliderTemplate responsive={responsive}>
+                                  {Array(6)
+                                      .fill()
+                                      .map((_, idx) => (
+                                          <ProductCardShimmer key={idx} />
+                                      ))}
+                              </SliderTemplate>
+                              <Button
+                                  text="Explore More"
+                                  color={"#F5FBF4"}
+                                  textColor={"text-[#74B83E]"}
+                                  fontSize="text-2xl"
+                                  border={"1px solid"}
+                                  image={rightArrow}
+                                  customClasses="absolute right-0 font-poppins"
+                              />
+                          </div>
+                      ))
+                    : // Display actual product cards when data is loaded
+                      Object.keys(products).map((category) => (
+                          <div key={category} className="mb-32 relative">
+                              <p className="text-4xl font-bold text-black mb-2 font-nunito">
+                                  {category}
+                              </p>
+                              <SliderTemplate responsive={responsive}>
+                                  {products[category]?.map((product) => (
+                                      <ProductCard
+                                          key={product.productId}
+                                          product={product}
+                                      />
+                                  ))}
+                              </SliderTemplate>
+                              <Button
+                                  text="Explore More"
+                                  color={"#F5FBF4"}
+                                  textColor={"text-[#74B83E]"}
+                                  fontSize="text-2xl"
+                                  border={"1px solid"}
+                                  image={rightArrow}
+                                  customClasses="absolute right-0 font-poppins"
+                              />
+                          </div>
+                      ))}
             </div>
         </div>
     );
