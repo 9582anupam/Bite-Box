@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import "./home.css";
+import { Link } from 'react-scroll';
 
 const NavBar = () => {
     const navList = ["Fruits", "Vegetables", "Snacks", "Offers", "Top Rated", "Todays Deal"];
@@ -9,8 +9,11 @@ const NavBar = () => {
             {navList.map((nav, index) => (
                 <Link
                     key={index} // `key` should be on the Link component
-                    to={`/category/${nav.toLowerCase()}`} // Dynamic routing, for example: `/fruits`, `/vegetables`, etc.
-                    className="text-white hover:text-gray text-2xl nav-item">
+                    to={`category-${nav}`} // Using the correct prop `to` with the section ID
+                    smooth={true}           // Enables smooth scrolling
+                    duration={500}          // Duration of scroll (in milliseconds)
+                    className="text-white hover:text-gray text-2xl nav-item cursor-pointer"
+                >
                     <div className="transition-all duration-100">{nav}</div>
                     <div className="under-highlight w-full h-[1px] bg-white opacity-0 transition-all"></div>
                 </Link>

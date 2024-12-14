@@ -96,7 +96,7 @@ const Product = () => {
                       ))
                     : // Display actual product cards when data is loaded
                       Object.keys(products).map((category) => (
-                          <div key={category} className="mb-32 relative">
+                          <div key={category} className="mb-32 relative" id={`category-${category}`}>
                               <p className="text-4xl font-bold text-black mb-2 font-nunito">
                                   {category}
                               </p>
