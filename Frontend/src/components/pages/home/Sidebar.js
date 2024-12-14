@@ -1,7 +1,7 @@
 import { Link } from 'react-scroll';
 
 const Sidebar = () => {
-    const navList = ["Vegetables", "Fruits", "Snacks", "Offers", "Top Rated", "Todays Deal"];
+    const navList = ["Today's Deal","Offers","Top Rated","Vegetables","Fruits","Snacks"];
 
     return (
         <div className="sidebar bg-[#74b83e] h-full p-4">

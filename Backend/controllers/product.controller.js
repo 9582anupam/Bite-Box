@@ -92,7 +92,7 @@ const getAllProductsStructuredByCategory = async (req, res) => {
         });
         structuredProducts["Top Rated"] = topRated;
         structuredProducts["Offers"] = topOffer;
-        structuredProducts["Todays Deal"] = todaysDeal;
+        structuredProducts["Today's Deal"] = todaysDeal;
         return res.status(200).json({
             message: "List of products structured by category",
             products: structuredProducts,

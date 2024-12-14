@@ -2,7 +2,7 @@ import "./home.css";
 import { Link } from 'react-scroll';
 
 const NavBar = () => {
-    const navList = ["Vegetables", "Fruits", "Snacks", "Offers", "Top Rated", "Todays Deal"];
+    const navList = ["Today's Deal","Offers", "Top Rated", "Vegetables","Fruits","Snacks"];;
 
     return (
         <div className="navbar bg-[#429A2D] h-12 w-full md:flex items-center justify-evenly hidden">

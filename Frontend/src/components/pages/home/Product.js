@@ -10,6 +10,15 @@ const Product = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true); // Add a loading state
 
+    const categories = [
+        "Today's Deal",
+        "Offers",
+        "Top Rated",
+        "Vegetables",
+        "Fruits",
+        "Snacks",
+    ];
+
     const responsive = {
         superLargeDesktop1: {
             breakpoint: { max: 4000, min: 3000 },
@@ -71,11 +80,11 @@ const Product = () => {
             <div className="lg:px-20 md: sm: px-4 w-full">
                 {loading
                     ? // Display shimmer skeleton while loading
-                      Array.from([1,2,3,4,5,6]).map((i, index) => (
+                      categories.map((category, index) => (
                           <div key={index} className="mb-32 relative">
-                              <div className="h-[2.25rem] w-60 mb-2 shimmer">
-                                
-                              </div>
+                              <p className="text-4xl font-bold text-black mb-2 font-nunito">
+                                  {category}
+                              </p>
                               <SliderTemplate responsive={responsive}>
                                   {Array(6)
                                       .fill()
@@ -95,8 +104,11 @@ const Product = () => {
                           </div>
                       ))
                     : // Display actual product cards when data is loaded
-                      Object.keys(products).map((category) => (
-                          <div key={category} className="mb-32 relative" id={`category-${category}`}>
+                      categories.map((category) => (
+                          <div
+                              key={category}
+                              className="mb-32 relative"
+                              id={`category-${category}`}>
                               <p className="text-4xl font-bold text-black mb-2 font-nunito">
                                   {category}
                               </p>
