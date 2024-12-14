@@ -73,9 +73,9 @@ const Product = () => {
                     ? // Display shimmer skeleton while loading
                       Array.from([1,2,3,4,5,6]).map((i, index) => (
                           <div key={index} className="mb-32 relative">
-                              <p className="text-4xl font-bold text-black mb-2 font-nunito">
-                                  category
-                              </p>
+                              <div className="h-[2.25rem] w-60 mb-2 shimmer">
+                                
+                              </div>
                               <SliderTemplate responsive={responsive}>
                                   {Array(6)
                                       .fill()
