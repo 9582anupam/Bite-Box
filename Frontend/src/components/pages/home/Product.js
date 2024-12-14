@@ -100,7 +100,7 @@ const Product = () => {
                                   border={"1px solid"}
                                   image={rightArrow}
                                   customClasses="absolute right-0 font-poppins"
-                                  imageClass={"h-24 w-24 ml-2"}
+                                  imageClass={"h-6 w-6 ml-2"}
                               />
                           </div>
                       ))
