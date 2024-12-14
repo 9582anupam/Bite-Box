@@ -9,6 +9,7 @@ const Button = ({
     onClick, // On click handler
     customClasses = "", // Additional custom classes
     image, // extra symbol/image in front of the button
+    imageClass,
     border,
 }) => {
     return (
@@ -22,7 +23,7 @@ const Button = ({
             }}>
             <p className="leading-normal">{text}</p>
             {image && (
-                <img src={image} alt="button-symbol" className="h-6 w-6 ml-2" />
+                <img src={image} alt="button-symbol" className={` ${imageClass}`} />
             )}
         </div>
     );

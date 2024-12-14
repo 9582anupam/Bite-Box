@@ -76,7 +76,7 @@ const Product = () => {
     }, []);
 
     return (
-        <div className="w-full bg-[#E4EDEC] flex justify-center pt-24 select-none">
+        <div className="w-full bg-[#E4EDEC] flex justify-center pt-24 select-none" id="product">
             <div className="lg:px-20 md: sm: px-4 w-full">
                 {loading
                     ? // Display shimmer skeleton while loading
@@ -100,6 +100,7 @@ const Product = () => {
                                   border={"1px solid"}
                                   image={rightArrow}
                                   customClasses="absolute right-0 font-poppins"
+                                  imageClass={"h-24 w-24 ml-2"}
                               />
                           </div>
                       ))
@@ -128,6 +129,7 @@ const Product = () => {
                                   border={"1px solid"}
                                   image={rightArrow}
                                   customClasses="absolute right-0 font-poppins"
+                                  imageClass={"h-6 w-6 ml-2"}
                               />
                           </div>
                       ))}
