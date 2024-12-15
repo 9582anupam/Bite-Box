@@ -31,13 +31,11 @@
 .sidebar-parent {
     right: -100%;
     width: 70%;
-    height: 100svh;
+    /* height: calc(100svh-90px); */
     position: absolute;
     opacity: 0;
     transition: 400ms ease-in-out;
     border: 2px solid #5D8B2C;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
     overflow: hidden;
 }
 
@@ -64,3 +62,11 @@
         background-position: 200% 0;
     }
 }
+
+
+.content-wrapper {
+    flex: 1;
+    overflow-y: auto;
+}
+
+ 

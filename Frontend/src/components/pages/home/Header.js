@@ -8,7 +8,7 @@ import Button from "../../common/Button";
 
 const Header = ({ setIsSidebarActive, isSidebarActive }) => {
     return (
-        <div className="bg-[#74B83E] h-20 flex items-center justify-between gap-4 px-8 w-full ">
+        <div className="bg-[#74B83E] h-20 flex items-center justify-between gap-4 px-8 w-full">
             {/* Logo */}
             <div className="flex items-center">
                 <img

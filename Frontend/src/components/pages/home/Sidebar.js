@@ -4,7 +4,7 @@ const Sidebar = () => {
     const navList = ["Today's Deal","Offers","Top Rated","Vegetables","Fruits","Snacks"];
 
     return (
-        <div className="sidebar bg-[#74b83e] h-full p-4">
+        <div className="sidebar bg-[#74b83e] h-[calc(100svh-83px)] p-4">
             <p className="text-4xl font-bold text-center mb-4 text-[#f9f7f2]">
                 Categories
             </p>
