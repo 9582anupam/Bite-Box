@@ -31,12 +31,14 @@
 .sidebar-parent {
     right: -100%;
     width: 70%;
-    /* height: calc(100svh-90px); */
+    height: 100dvh;
     position: absolute;
     opacity: 0;
     transition: 400ms ease-in-out;
     border: 2px solid #5D8B2C;
     overflow: hidden;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
 }
 
 /* When the sidebar is active, it slides in from the right */
@@ -63,10 +65,5 @@
     }
 }
 
-
-.content-wrapper {
-    flex: 1;
-    overflow-y: auto;
-}
 
  

@@ -22,6 +22,7 @@ const Hero = () => {
                         to="product"
                         smooth={true}
                         duration={500}
+                        offset={-128}
                         className="cursor-pointer">
                         <Button
                             color={"#74B83E"}

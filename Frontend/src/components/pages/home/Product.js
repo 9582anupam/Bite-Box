@@ -66,10 +66,11 @@ const Product = () => {
                     `${backendUrl}/api/v1/products/structured`
                 );
                 setProducts(response.data.products);
+                console.log("added");
                 setLoading(false); // Set loading to false once data is fetched
             } catch (error) {
                 console.log(error);
-                setLoading(false); // Set loading to false in case of error
+                setLoading(true); // Set loading to false in case of error
             }
         };
         fetchProducts();

@@ -12,6 +12,7 @@ const NavBar = () => {
                     to={`category-${nav}`} // Using the correct prop `to` with the section ID
                     smooth={true}           // Enables smooth scrolling
                     duration={500}          // Duration of scroll (in milliseconds)
+                    offset={-128} 
                     className="text-white hover:text-gray text-2xl nav-item cursor-pointer"
                 >
                     <div className="transition-all duration-100">{nav}</div>
