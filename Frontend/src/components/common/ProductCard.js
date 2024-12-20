@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
     return (
         <div
             key={product.productId}
-            className="w-[160px] sm:w-[190px] md:w-[210px] lg:w-[270px] py-2 px-2 my-2 flex flex-col rounded-xl bg-[white] transition-transform duration-300 hover:scale-[1.01] mx-auto shadow-lg">
+            className="w-[160px] sm:w-[190px] md:w-[210px] lg:w-[270px] py-2 px-2 my-2 flex flex-col rounded-xl bg-[white] transition-transform duration-150 hover:scale-[1.01] mx-auto shadow-lg">
             <Link
                 to={`/product/${product.productId}`}
                 className="gap-2 flex flex-col">
@@ -23,7 +23,11 @@ const ProductCard = ({ product }) => {
                             ${product.price.toFixed(2)}
                         </p>
                         <p className="text-2xl text-[#74B83E] leading-3 font-semibold">
-                            ${((product.price - product.price * product.discount)).toFixed(2)}
+                            $
+                            {(
+                                product.price -
+                                product.price * product.discount
+                            ).toFixed(2)}
                         </p>
                     </div>
                     <div className="bg-[#74B83E] flex justify-center items-center gap-1 px-5 py-2 rounded-lg text-white text-center mt-2 w-fit mx-auto">

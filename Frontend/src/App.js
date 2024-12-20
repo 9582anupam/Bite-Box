@@ -5,40 +5,40 @@ import NavBar from "./components/pages/home/NavBar";
 import Location from "./components/pages/home/Location";
 import { useState } from "react";
 import Sidebar from "./components/pages/home/Sidebar";
+import Category from "./components/pages/category/Category";
 
 function App() {
     const [isSidebarActive, setIsSidebarActive] = useState(false);
 
     return (
-        <div className="App">
-            <div className="fixed z-10 w-full">
-                <div
-                    className={`${isSidebarActive ? "active" : ""} sidebar-parent`}>
-                    <Sidebar />
+        <BrowserRouter>
+            <div className="App">
+                <div className="fixed z-50 w-full">
+                    <div
+                        className={`${
+                            isSidebarActive ? "active" : ""
+                        } sidebar-parent`}>
+                        <Sidebar />
+                    </div>
+                    <Header
+                        isSidebarActive={isSidebarActive}
+                        setIsSidebarActive={setIsSidebarActive}
+                    />
+                    <NavBar />
+                    <Location />
                 </div>
-                <Header
-                    isSidebarActive={isSidebarActive}
-                    setIsSidebarActive={setIsSidebarActive}
-                />
-                <NavBar />
-                <Location />
-            </div>
-            <BrowserRouter>
-                <div className="content-wrapper pt-32">
+                <div
+                    className="content-wrapper pt-32"
+                    onClick={() =>
+                        isSidebarActive && setIsSidebarActive(false)
+                    }>
                     <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <Home
-                                    isSidebarActive={isSidebarActive}
-                                    setIsSidebarActive={setIsSidebarActive}
-                                />
-                            }
-                        />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/category/:id" element={<Category />} />
                     </Routes>
                 </div>
-            </BrowserRouter>
-        </div>
+            </div>
+        </BrowserRouter>
     );
 }
 

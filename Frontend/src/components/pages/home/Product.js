@@ -5,6 +5,7 @@ import ProductCard from "../../common/ProductCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ProductCardShimmer from "../../common/ProductCardShimmer";
+import { Link } from "react-router-dom";
 
 const Product = () => {
     const [products, setProducts] = useState([]);
@@ -66,7 +67,6 @@ const Product = () => {
                     `${backendUrl}/api/v1/products/structured`
                 );
                 setProducts(response.data.products);
-                console.log("added");
                 setLoading(false); // Set loading to false once data is fetched
             } catch (error) {
                 console.log(error);
@@ -77,7 +77,9 @@ const Product = () => {
     }, []);
 
     return (
-        <div className="w-full bg-[#E4EDEC] flex justify-center pt-24 select-none" id="product">
+        <div
+            className="w-full bg-[#E4EDEC] flex justify-center pt-24 select-none"
+            id="product">
             <div className="lg:px-20 md: sm: px-4 w-full">
                 {loading
                     ? // Display shimmer skeleton while loading
@@ -122,16 +124,18 @@ const Product = () => {
                                       />
                                   ))}
                               </SliderTemplate>
-                              <Button
-                                  text="Explore More"
-                                  color={"#F5FBF4"}
-                                  textColor={"text-[#74B83E]"}
-                                  fontSize="text-2xl"
-                                  border={"1px solid"}
-                                  image={rightArrow}
-                                  customClasses="absolute right-0 font-poppins"
-                                  imageClass={"h-6 w-6 ml-2"}
-                              />
+                              <Link to={`/category/${category}`} key={category}>
+                                  <Button
+                                      text="Explore More"
+                                      color={"#F5FBF4"}
+                                      textColor={"text-[#74B83E]"}
+                                      fontSize="text-2xl"
+                                      border={"1px solid"}
+                                      image={rightArrow}
+                                      customClasses="absolute right-0 font-poppins"
+                                      imageClass={"h-6 w-6 ml-2"}
+                                  />
+                              </Link>
                           </div>
                       ))}
             </div>

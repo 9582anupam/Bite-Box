@@ -1,7 +1,33 @@
-import { Link } from 'react-scroll';
+import { Link as RouterLink } from 'react-router-dom'; // For regular page navigation
+import { Link } from 'react-scroll'; // For scrolling navigation
+import { useLocation } from 'react-router-dom'; // To get the current route
 
 const Sidebar = () => {
-    const navList = ["Today's Deal","Offers","Top Rated","Vegetables","Fruits","Snacks"];
+    // Navigation lists for different pages
+    const homeNavList = [
+        { name: "Home", link: "App" },
+        { name: "Today's Deal", link: "category-Today's Deal" },
+        { name: "Offers", link: "category-Offers" },
+        { name: "Top Rated", link: "category-Top Rated" },
+        { name: "Vegetables", link: "category-Vegetables" },
+        { name: "Fruits", link: "category-Fruits" },
+        { name: "Snacks", link: "category-Snacks" },
+    ];
+
+    const NoneHomeNavList = [
+        { name: "Home", link: "/" },
+        { name: "Today's Deal", link: "category/Today's Deal" },
+        { name: "Offers", link: "category/Offers" },
+        { name: "Top Rated", link: "category/Top Rated" },
+        { name: "Vegetables", link: "category/Vegetables" },
+        { name: "Fruits", link: "category/Fruits" },
+        { name: "Snacks", link: "category/Snacks" },
+    ];
+
+    const location = useLocation();
+
+    // Decide which nav list to use based on the location
+    const navList = location.pathname === "/" ? homeNavList : NoneHomeNavList;
 
     return (
         <div className="sidebar bg-[#74b83e] h-full p-4">
@@ -10,17 +36,28 @@ const Sidebar = () => {
             </p>
             <div className="h-[1px] w-full bg-white mb-8 opacity-50"></div>
             <div className="flex flex-col gap-6">
-                {navList.map((nav, index) => (
-                    <Link
-                        key={index}
-                        to={`category-${nav}`} // Using the correct prop `to` with the section ID
-                        smooth={true}           // Enables smooth scrolling
-                        duration={500}
-                        offset={-128}
-                        className="text-3xl text-white cursor-pointer">
-                        {nav}
-                    </Link>
-                ))}
+                {navList.map((nav, index) =>
+                    location.pathname === "/" ? (
+                        // Use react-scroll Link for home path
+                        <Link
+                            key={index}
+                            to={nav.link}
+                            smooth={true}
+                            duration={500}
+                            offset={-128}
+                            className="text-3xl text-white cursor-pointer">
+                            {nav.name}
+                        </Link>
+                    ) : (
+                        // Use react-router-dom Link for non-home path
+                        <RouterLink
+                            key={index}
+                            to={nav.link}
+                            className="text-3xl text-white cursor-pointer">
+                            {nav.name}
+                        </RouterLink>
+                    )
+                )}
             </div>
         </div>
     );

@@ -23,7 +23,7 @@ const Hero = () => {
                         smooth={true}
                         duration={500}
                         offset={-128}
-                        className="cursor-pointer">
+                        className="cursor-pointer w-fit">
                         <Button
                             color={"#74B83E"}
                             text={"Explore More"}

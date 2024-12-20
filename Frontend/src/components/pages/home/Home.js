@@ -4,12 +4,10 @@ import Footer from "./Footer";
 
 import "./home.css";
 
-const Home = ({ isSidebarActive, setIsSidebarActive }) => {
+const Home = () => {
     return (
         <div className="home overflow-x-hidden  relative">
-            <div
-                className="w-full"
-                onClick={() => isSidebarActive && setIsSidebarActive(false)}>
+            <div className="w-full">
                 <Hero />
                 <Product />
                 <Footer />

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { Product } from "../models/product.models.js";
+import { capitalizeWords } from "../helper/capitalizeWords.js";
 
 const getAllProducts = async (req, res) => {
     try {
@@ -57,15 +58,51 @@ const createProduct = async (req, res) => {
 
 const getProductByCategory = async (req, res) => {
     try {
-        const category = req.params.category;
-        const products = await Product.find({ category: category });
+        let category = req.params.category;
+        category = capitalizeWords(category);
+
+        // Helper function to handle category-based logic
+        const getCategoryProducts = async (category) => {
+            switch (category) {
+                case "Today's Deal":
+                    return await Product.aggregate([{ $sample: { size: 30 } }]);
+                case "Top Rated":
+                    return await Product.find({ rating: { $gt: 4.7 } });
+                case "Offers":
+                    return await Product.find({ discount: { $gt: 0.19 } });
+                default:
+                    return null; // For any other category not handled specifically
+            }
+        };
+
+        // Attempt to find products for the category
+        let products = await Product.find({ category });
+
+        if (products.length === 0) {
+            // If no products found, handle special categories
+            const specialCategoryProducts = await getCategoryProducts(category);
+
+            if (specialCategoryProducts) {
+                return res.status(200).json({
+                    message: `List of products in special category '${category}'`,
+                    products: specialCategoryProducts,
+                    status: 200,
+                });
+            } else {
+                return res.status(404).json({
+                    message: `No products found in category '${category}'`,
+                    status: 404,
+                });
+            }
+        }
+
         return res.status(200).json({
-            message: "List of products by category",
+            message: `List of products by category '${category}'`,
             products: products,
             status: 200,
         });
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return res.status(500).json({
             message: "Internal server error",
             status: 500,
@@ -79,9 +116,7 @@ const getAllProductsStructuredByCategory = async (req, res) => {
         const products = await Product.find({});
         const topRated = await Product.find({ rating: { $gt: 4.7 } });
         const topOffer = await Product.find({ discount: { $gt: 0.19 } });
-        const todaysDeal = await Product.aggregate([
-            { $sample: { size: 30 } },
-        ]);
+        const todaysDeal = await Product.aggregate([{ $sample: { size: 30 } }]);
         let structuredProducts = {};
         products.forEach((product) => {
             if (structuredProducts[product.category]) {
