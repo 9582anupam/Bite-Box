@@ -20,13 +20,14 @@ const ProductCard = ({ product }) => {
                     </p>
                     <div className="flex justify-center items-center gap-2">
                         <p className="text-lg line-through text-[#7F7F7F] leading-3">
-                            ${product.price.toFixed(2)}
+                            &#8377; {/* rupee symbol */}
+                            {product.price.toFixed(2)}
                         </p>
                         <p className="text-2xl text-[#74B83E] leading-3 font-semibold">
-                            $
+                            &#8377; {/* rupee symbol */}
                             {(
                                 product.price -
-                                product.price * product.discount
+                                product.price * (product.discount / 100)
                             ).toFixed(2)}
                         </p>
                     </div>

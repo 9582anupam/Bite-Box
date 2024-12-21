@@ -13,7 +13,9 @@ const Category = () => {
     const [discountRange, setDiscountRange] = useState([0, 1000]);
     const [ratingValue, setRatingValue] = useState(0);
     const [isLargeScreen, setIsLargeScreen] = useState(false);
+    const [isFilterChange, setIsFilterChange] = useState(false);
 
+    // used for displaying rating stars large/small based on screen size
     // Check screen width on mount and on window resize
     useEffect(() => {
         const handleResize = () => {
@@ -33,8 +35,11 @@ const Category = () => {
         const fetchProducts = async () => {
             try {
                 const backendUrl = process.env.REACT_APP_BACKEND_URL;
+                // const response = await axios.get(
+                //     `${backendUrl}/api/v1/products/category/${category}?priceMin=${priceRange[0]}&priceMax=${priceRange[1]}&discountMin=${discountRange[0]}&discountMax=${discountRange[1]}&rating=${ratingValue}`
+                // );/
                 const response = await axios.get(
-                    `${backendUrl}/api/v1/products/category/${category}?priceMin=${priceRange[0]}&priceMax=${priceRange[1]}&discountMin=${discountRange[0]}&discountMax=${discountRange[1]}&rating=${ratingValue}`
+                    `${backendUrl}/api/v1/products/category/${category}`
                 );
                 setProducts(response.data.products);
                 setLoading(false);
@@ -44,7 +49,7 @@ const Category = () => {
             }
         };
         fetchProducts();
-    }, [category, priceRange, discountRange, ratingValue]);
+    }, [category]);
 
     return (
         <div className="bg-[#F5FBF4]">
@@ -62,6 +67,8 @@ const Category = () => {
                         ratingValue={ratingValue}
                         setRatingValue={setRatingValue}
                         isLargeScreen={isLargeScreen}
+                        isFilterChange={isFilterChange}
+                        setIsFilterChange={setIsFilterChange}
                     />
 
                     {/* Products List */}

@@ -26,7 +26,6 @@ const NavBar = () => {
     ];
 
     const location = useLocation();
-    console.log(location.pathname);
 
     // Decide which nav list to use based on the location
     const navList = location.pathname === "/" ? homeNavList : NoneHomeNavList;

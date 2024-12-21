@@ -12,17 +12,26 @@ const Filter = ({
     ratingValue,
     setRatingValue,
     isLargeScreen,
+    isFilterChange,
+    setIsFilterChange,
 }) => {
     const handlePriceRangeChange = (event, newValue) => {
         setPriceRange(newValue);
+        setIsFilterChange(true);
     };
 
     const handleDiscountRangeChange = (event, newValue) => {
         setDiscountRange(newValue);
+        setIsFilterChange(true);
     };
 
     const handleRatingChange = (event, newValue) => {
         setRatingValue(newValue);
+        setIsFilterChange(true);
+    };
+
+    const handleApplyChanges = () => {
+        setIsFilterChange(false);
     };
 
     return (
@@ -33,15 +42,28 @@ const Filter = ({
                 </p>
 
                 {/* Apply Button */}
-                <Button
-                    text={"Apply"}
-                    color={"#74B83E"}
-                    textColor={"text-[white]"}
-                    fontSize={"text-lg"}
-                    padding={"px-4 py-2"}
-                    borderRadius={"rounded-md"}
-                    customClasses={"hover:bg-opacity-80 h-fit"}
-                />
+                {isFilterChange ? (
+                    <Button
+                        text={"Apply"}
+                        color={"#74B83E"}
+                        textColor={"text-[white]"}
+                        fontSize={"text-lg"}
+                        padding={"px-4 py-2"}
+                        borderRadius={"rounded-md"}
+                        customClasses={"hover:bg-opacity-80 h-fit"}
+                        onClick={handleApplyChanges}
+                    />
+                ) : (
+                    <Button
+                        text={"Apply"}
+                        color={"#E0E0E0"}
+                        textColor={"text-[white]"}
+                        fontSize={"text-lg"}
+                        padding={"px-4 py-2"}
+                        borderRadius={"rounded-md"}
+                        customClasses={"hover:bg-opacity-80 h-fit cursor-default"}
+                    />
+                )}
             </div>
 
             {/* Price Range */}

@@ -143,10 +143,43 @@ const getAllProductsStructuredByCategory = async (req, res) => {
     }
 };
 
+const updateProductPrices = async (req, res) => {
+    try {
+      // Update all documents with a random price between 50 and 200
+      const result = await Product.updateMany(
+        {},
+        [
+            {
+              $set: {
+                rating: {
+                  $multiply: [
+                    { $floor: { $multiply: [{ $rand: {} }, 11] } },  // Random value from 0 to 10
+                    0.5  // Step size of 0.5
+                  ]
+                }
+              }
+            }
+          ]
+          
+          
+      );
+  
+      // Send response with matched and modified document counts
+      return res.status(200).json({
+        message: `Matched ${result.matchedCount} documents and modified ${result.modifiedCount} documents`,
+      });
+  
+    } catch (err) {
+      console.error('Error updating prices:', err);
+      return res.status(500).json({ message: 'Server error' });
+    }
+  };
+
 export {
     getAllProducts,
     getProductById,
     createProduct,
     getProductByCategory,
     getAllProductsStructuredByCategory,
+    updateProductPrices,
 };

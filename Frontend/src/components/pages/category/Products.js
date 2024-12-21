@@ -10,7 +10,11 @@ const Products = ({ products, loading }) => {
                 {loading
                     ? Array(8)
                           .fill()
-                          .map((_, idx) => <ProductCardShimmer key={idx} />)
+                          .map((_, idx) => (
+                              <div className="p-2" key={idx}>
+                                  <ProductCardShimmer key={idx} />
+                              </div>
+                          ))
                     : products.map((product) => (
                           <div className="p-2" key={product.productId}>
                               <ProductCard product={product} />

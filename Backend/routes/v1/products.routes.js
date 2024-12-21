@@ -7,6 +7,7 @@ import {
     createProduct,
     getProductByCategory,
     getAllProductsStructuredByCategory,
+    updateProductPrices,
 } from "../../controllers/product.controller.js";
 
 // Example product routes
@@ -22,5 +23,7 @@ router.route("/product").post(createProduct);
 router.route("/category/:category").get(getProductByCategory);
 
 router.route("/structured").get(getAllProductsStructuredByCategory);
+
+router.route("/update-prices").put(updateProductPrices);
 
 export default router;
