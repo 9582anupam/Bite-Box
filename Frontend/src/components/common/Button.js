@@ -1,5 +1,5 @@
 const Button = ({
-    text,
+    text="button",
     color,
     textColor = "text-white", // Default text color to white
     padding = "py-2 px-4", // Default padding

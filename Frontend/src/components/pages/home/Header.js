@@ -7,9 +7,9 @@ import SearchBar from "../../common/SearchBar";
 import Button from "../../common/Button";
 import { Link } from "react-router-dom";
 
-const Header = ({ setIsSidebarActive, isSidebarActive }) => {
+const Header = ({ setIsSidebarActive, isSidebarActive, headerRef }) => {
     return (
-        <div className="bg-[#74B83E] h-20 flex items-center justify-between gap-4 px-8 w-full">
+        <div className="bg-[#74B83E] h-20 flex items-center justify-between gap-4 px-8 w-full" >
             {/* Logo */}
             <Link className="flex items-center" to={"/"}>
                 <img
@@ -21,7 +21,7 @@ const Header = ({ setIsSidebarActive, isSidebarActive }) => {
 
             {/* Search Bar */}
             <div className="w-1/3 md:block hidden">
-                <SearchBar />
+                <SearchBar size={"small"} />
             </div>
 
             {/* Location */}
@@ -46,7 +46,7 @@ const Header = ({ setIsSidebarActive, isSidebarActive }) => {
                 {/* Hamburger */}
                 <div
                     className="md:hidden block"
-                    onClick={() => setIsSidebarActive(!isSidebarActive)}>
+                    onClick={() => setIsSidebarActive(!isSidebarActive)} ref={headerRef}>
                     <img src={ham} alt="ham" className="h-12" />
                 </div>
             </div>

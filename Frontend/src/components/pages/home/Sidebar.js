@@ -1,6 +1,7 @@
-import { Link as RouterLink } from 'react-router-dom'; // For regular page navigation
-import { Link } from 'react-scroll'; // For scrolling navigation
-import { useLocation } from 'react-router-dom'; // To get the current route
+import { Link as RouterLink } from "react-router-dom"; // For regular page navigation
+import { Link } from "react-scroll"; // For scrolling navigation
+import { useLocation } from "react-router-dom"; // To get the current route
+import Location from "./Location";
 
 const Sidebar = () => {
     // Navigation lists for different pages
@@ -31,10 +32,8 @@ const Sidebar = () => {
 
     return (
         <div className="sidebar bg-[#74b83e] h-full p-4">
-            <p className="text-4xl font-bold text-center mb-4 text-[#f9f7f2]">
-                Categories
-            </p>
-            <div className="h-[1px] w-full bg-white mb-8 opacity-50"></div>
+            <Location />
+            <div className="h-[1px] w-full bg-white my-4 opacity-50"></div>
             <div className="flex flex-col gap-6">
                 {navList.map((nav, index) =>
                     location.pathname === "/" ? (
@@ -44,7 +43,7 @@ const Sidebar = () => {
                             to={nav.link}
                             smooth={true}
                             duration={500}
-                            offset={-128}
+                            offset={-140}
                             className="text-3xl text-white cursor-pointer">
                             {nav.name}
                         </Link>

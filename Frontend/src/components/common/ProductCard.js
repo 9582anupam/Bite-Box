@@ -19,12 +19,12 @@ const ProductCard = ({ product }) => {
                         {product.name}
                     </p>
                     <div className="flex justify-center items-center gap-2">
-                        <p className="text-lg line-through text-[#7F7F7F] leading-3">
-                            &#8377; {/* rupee symbol */}
+                        <p className="text-sm md:text-lg line-through text-[#7F7F7F] leading-3">
+                            {"\u20B9"} {/* rupee symbol */}
                             {product.price.toFixed(2)}
                         </p>
-                        <p className="text-2xl text-[#74B83E] leading-3 font-semibold">
-                            &#8377; {/* rupee symbol */}
+                        <p className="text-base md:text-2xl text-[#74B83E] leading-3 font-semibold">
+                            {"\u20B9"} {/* rupee symbol */}
                             {(
                                 product.price -
                                 product.price * (product.discount / 100)

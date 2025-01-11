@@ -1,12 +1,12 @@
 import { TextField, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-const SearchBar = () => {
+const SearchBar = ( { size } ) => {
     return (
         <TextField
             variant="outlined"
             placeholder="Search for products..."
-            size="small"
+            size={size}
             fullWidth
             slotProps={{
                 input: {
@@ -31,9 +31,11 @@ const SearchBar = () => {
                         borderColor: "#74B83E",
                     },
                 },
+                zIndex: 1,
             }}
         />
     );
 };
+
 
 export default SearchBar;
