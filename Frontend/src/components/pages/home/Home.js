@@ -1,6 +1,5 @@
 import Hero from "./Hero";
 import Product from "./Product";
-import Footer from "./Footer";
 
 import "./home.css";
 
@@ -10,7 +9,6 @@ const Home = () => {
             <div className="w-full">
                 <Hero />
                 <Product />
-                <Footer />
             </div>
         </div>
     );

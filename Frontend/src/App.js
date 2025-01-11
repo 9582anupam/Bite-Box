@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import Sidebar from "./components/pages/home/Sidebar";
 import Category from "./components/pages/category/Category";
 import SearchBar from "./components/common/SearchBar";
+import Footer from "./components/pages/home/Footer";
 
 function App() {
     const [isSidebarActive, setIsSidebarActive] = useState(false);
@@ -42,8 +43,7 @@ function App() {
                         className={`${
                             isSidebarActive ? "active" : ""
                         } sidebar-parent z-50`}
-                        ref={sidebarRef}
-                        >
+                        ref={sidebarRef}>
                         <Sidebar />
                     </div>
                     <Header
@@ -62,6 +62,9 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/category/:id" element={<Category />} />
                     </Routes>
+                </div>
+                <div>
+                    <Footer />
                 </div>
             </div>
         </BrowserRouter>

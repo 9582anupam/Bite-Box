@@ -35,7 +35,7 @@ const Filter = ({
     };
 
     return (
-        <div className="lg:w-1/4 w-[30%] mt-4 flex-1 bg-white fixed p-2 py-6 px-4 lg:px-10 rounded-lg shadow-lg h-fit flex flex-col gap-6">
+        <div className="lg:w-1/4 min-w-[30%] mt-4 flex-1 bg-white sticky top-52 p-2 py-6 px-4 lg:px-10 rounded-lg shadow-lg h-fit flex flex-col gap-6 mb-24">
             <div className="flex justify-between w-full">
                 <p className="text-3xl font-semibold text-gray-800 mb-4">
                     Filter
@@ -61,7 +61,9 @@ const Filter = ({
                         fontSize={"text-lg"}
                         padding={"px-4 py-2"}
                         borderRadius={"rounded-md"}
-                        customClasses={"hover:bg-opacity-80 h-fit cursor-default"}
+                        customClasses={
+                            "hover:bg-opacity-80 h-fit cursor-default"
+                        }
                     />
                 )}
             </div>
