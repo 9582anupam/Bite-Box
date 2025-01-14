@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
     return (
         <div
             key={product.productId}
-            className="w-[160px] sm:w-[190px] md:w-[210px] lg:w-[270px] py-2 px-2 my-2 flex flex-col rounded-xl bg-[white] transition-transform duration-150 hover:scale-[1.01] mx-auto shadow-lg">
+            className="w-[160px] sm:w-[190px] md:w-[210px] lg:w-[270px] py-2 px-2 my-2 flex flex-col rounded-xl bg-[white] transition-transform duration-150 hover:scale-[1.01] mx-auto shadow-lg mb-6">
             <Link
                 to={`/product/${product.productId}`}
                 className="gap-2 flex flex-col">

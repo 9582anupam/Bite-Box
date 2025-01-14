@@ -78,7 +78,7 @@ const Product = () => {
 
     return (
         <div
-            className="w-full bg-[#E4EDEC] flex justify-center pt-24 select-none"
+            className="w-full bg-[#ecffe9] flex justify-center pt-24 select-none"
             id="product">
             <div className="lg:px-20 md: sm: px-4 w-full">
                 {loading

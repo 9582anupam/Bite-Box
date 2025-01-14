@@ -35,7 +35,8 @@ const Filter = ({
     };
 
     return (
-        <div className="lg:w-1/4 min-w-[30%] mt-4 flex-1 bg-white sticky top-52 p-2 py-6 px-4 lg:px-10 rounded-lg shadow-lg h-fit flex flex-col gap-6 mb-24">
+        <div
+            className=" flex flex-1 flex-col mt-4 p-2 py-6 px-4 lg:px-10 gap-6 bg-white rounded-lg shadow-lg">
             <div className="flex justify-between w-full">
                 <p className="text-3xl font-semibold text-gray-800 mb-4">
                     Filter

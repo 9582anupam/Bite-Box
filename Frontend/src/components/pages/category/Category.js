@@ -4,6 +4,7 @@ import axios from "axios";
 import Filter from "./Filter"; // Import Filter component
 import Products from "./Products"; // Import Products component
 import "./category.css";
+import SortDropdown from "./SortDropdown";
 
 const Category = () => {
     const [products, setProducts] = useState([]);
@@ -52,24 +53,35 @@ const Category = () => {
     }, [category]);
 
     return (
-        <div className="bg-[#F5FBF4]">
+        <div className="bg-[#ecffe9]">
             <div className="lg:px-20 md: sm:px-4 w-full">
-                <p className="text-center text-5xl font-bold py-6">
-                    {category}
-                </p>
-                <div className="flex justify-between">
+                <div className="flex justify-center relative">
+                    <p className="text-center text-5xl font-bold py-6">
+                        {category}
+                    </p>
+
+                    {/* Sorting Dropdown */}
+                    <div className="absolute right-8 top-8 hidden md:block">
+                        <SortDropdown />
+                    </div>
+                </div>
+
+                <div className="flex justify-between ">
                     {/* Filters Sidebar */}
-                    <Filter
-                        priceRange={priceRange}
-                        setPriceRange={setPriceRange}
-                        discountRange={discountRange}
-                        setDiscountRange={setDiscountRange}
-                        ratingValue={ratingValue}
-                        setRatingValue={setRatingValue}
-                        isLargeScreen={isLargeScreen}
-                        isFilterChange={isFilterChange}
-                        setIsFilterChange={setIsFilterChange}
-                    />
+                    <div
+                        className="hidden md:block sticky top-56 mb-28 lg:w-1/4 min-w-[30%] h-fit">
+                        <Filter
+                            priceRange={priceRange}
+                            setPriceRange={setPriceRange}
+                            discountRange={discountRange}
+                            setDiscountRange={setDiscountRange}
+                            ratingValue={ratingValue}
+                            setRatingValue={setRatingValue}
+                            isLargeScreen={isLargeScreen}
+                            isFilterChange={isFilterChange}
+                            setIsFilterChange={setIsFilterChange}
+                        />
+                    </div>
 
                     {/* Products List */}
                     <Products products={products} loading={loading} />
