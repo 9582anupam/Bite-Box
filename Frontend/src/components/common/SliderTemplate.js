@@ -40,6 +40,7 @@ const SliderTemplate = ({ children, responsive }) => {
                 transitionDuration={500}
                 containerClass="carousel-container"
                 removeArrowOnDeviceType={["tablet", "mobile"]}
+                pauseOnHover={false}
                 customLeftArrow={<CustomLeftArrow />}
                 customRightArrow={<CustomRightArrow />}
                 arrows>
