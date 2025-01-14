@@ -1,11 +1,11 @@
-import logo from "../../../utils/images/footer/logo.svg";
-import location from "../../../utils/images/footer/location.svg";
-import headphones from "../../../utils/images/footer/headphones.svg";
-import mail from "../../../utils/images/footer/mail.svg";
-import instagram from "../../../utils/images/footer/instagram.png";
-import facebook from "../../../utils/images/footer/facebook.png";
-import youtube from "../../../utils/images/footer/youtube.png";
-import x from "../../../utils/images/footer/twitter.png";
+import logo from "../../utils/images/footer/logo.svg";
+import location from "../../utils/images/footer/location.svg";
+import headphones from "../../utils/images/footer/headphones.svg";
+import mail from "../../utils/images/footer/mail.svg";
+import instagram from "../../utils/images/footer/instagram.png";
+import facebook from "../../utils/images/footer/facebook.png";
+import youtube from "../../utils/images/footer/youtube.png";
+import x from "../../utils/images/footer/twitter.png";
 
 const Footer = () => {
     // Home

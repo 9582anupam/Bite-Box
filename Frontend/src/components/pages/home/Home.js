@@ -1,5 +1,5 @@
-import Hero from "./Hero";
-import Product from "./Product";
+import Hero from "./components/Hero";
+import Product from "./components/Product";
 
 import "./home.css";
 

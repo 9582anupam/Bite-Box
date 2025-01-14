@@ -1,10 +1,10 @@
-import SliderTemplate from "../../common/SliderTemplate";
-import Button from "../../common/Button";
-import rightArrow from "../../../utils/images/product/right-arrow.svg";
-import ProductCard from "../../common/ProductCard";
+import SliderTemplate from "../../../common/SliderTemplate";
+import Button from "../../../common/Button";
+import rightArrow from "../../../../utils/images/product/right-arrow.svg";
+import ProductCard from "../../../common/ProductCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ProductCardShimmer from "../../common/ProductCardShimmer";
+import ProductCardShimmer from "../../../common/ProductCardShimmer";
 import { Link } from "react-router-dom";
 
 const Product = () => {

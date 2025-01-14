@@ -1,13 +1,14 @@
 import Home from "./components/pages/home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/pages/home/Header";
-import NavBar from "./components/pages/home/NavBar";
+import Header from "./components/common/Header";
+import NavBar from "./components/common/navbar/NavBar";
 // import Location from "./components/pages/home/Location";
 import { useState, useEffect, useRef } from "react";
-import Sidebar from "./components/pages/home/Sidebar";
+import Sidebar from "./components/common/sidebar/Sidebar";
 import Category from "./components/pages/category/Category";
 import SearchBar from "./components/common/SearchBar";
-import Footer from "./components/pages/home/Footer";
+import Footer from "./components/common/Footer";
+import "./components/common/sidebar/sidebar.css";
 
 function App() {
     const [isSidebarActive, setIsSidebarActive] = useState(false);

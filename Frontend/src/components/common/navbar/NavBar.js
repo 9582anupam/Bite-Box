@@ -1,4 +1,4 @@
-import "./home.css";
+import "./navbar.css";
 import { Link as RouterLink } from "react-router-dom"; // Import Link from react-router-dom for non-home pages
 import { Link } from "react-scroll";
 import { useLocation } from "react-router-dom";

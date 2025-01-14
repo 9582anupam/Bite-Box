@@ -1,10 +1,9 @@
-import combineLogoText from "../../../utils/images/logo/combine-logo-text-white.svg";
-
-import user from "../../../utils/images/header/user.svg";
-import cart from "../../../utils/images/header/cart.svg";
-import ham from "../../../utils/images/header/ham.svg";
-import SearchBar from "../../common/SearchBar";
-import Button from "../../common/Button";
+import combineLogoText from "../../utils/images/logo/combine-logo-text-white.svg";
+import user from "../../utils/images/header/user.svg";
+import cart from "../../utils/images/header/cart.svg";
+import ham from "../../utils/images/header/ham.svg";
+import SearchBar from "./SearchBar";
+import Button from "./Button";
 import { Link } from "react-router-dom";
 
 const Header = ({ setIsSidebarActive, isSidebarActive, headerRef }) => {

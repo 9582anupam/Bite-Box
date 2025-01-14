@@ -1,5 +1,5 @@
-import Button from "../../common/Button";
-import downArrow from "../../../utils/images/hero/down-arrow.svg";
+import Button from "../../../common/Button";
+import downArrow from "../../../../utils/images/hero/down-arrow.svg";
 import { Link } from "react-scroll";
 
 const Hero = () => {

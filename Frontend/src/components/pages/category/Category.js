@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import Filter from "./Filter"; // Import Filter component
-import Products from "./Products"; // Import Products component
+import Filter from "./components/Filter"; // Import Filter component
+import Products from "./components/Products"; // Import Products component
 import "./category.css";
-import SortDropdown from "./SortDropdown";
+import SortDropdown from "./components/SortDropdown";
 
 const Category = () => {
     const [products, setProducts] = useState([]);

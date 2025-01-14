@@ -1,7 +1,8 @@
 import { Link as RouterLink } from "react-router-dom"; // For regular page navigation
 import { Link } from "react-scroll"; // For scrolling navigation
 import { useLocation } from "react-router-dom"; // To get the current route
-import Location from "./Location";
+import Location from "../../pages/home/components/Location";
+import "./sidebar.css";
 
 const Sidebar = () => {
     // Navigation lists for different pages

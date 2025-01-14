@@ -2,7 +2,7 @@ import React from "react";
 import { Slider } from "@mui/material";
 import { Box } from "@mui/system";
 import Rating from "@mui/material/Rating";
-import Button from "../../common/Button";
+import Button from "../../../common/Button";
 
 const Filter = ({
     priceRange,

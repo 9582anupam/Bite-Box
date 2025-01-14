@@ -1,7 +1,7 @@
 // src/components/Products.js
 import React from "react";
-import ProductCard from "../../common/ProductCard";
-import ProductCardShimmer from "../../common/ProductCardShimmer";
+import ProductCard from "../../../common/ProductCard";
+import ProductCardShimmer from "../../../common/ProductCardShimmer";
 
 const Products = ({ products, loading }) => {
     return (
