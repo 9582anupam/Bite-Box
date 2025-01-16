@@ -1,5 +1,5 @@
 const Button = ({
-    text="button",
+    text = "button",
     color,
     textColor = "text-white", // Default text color to white
     padding = "py-2 px-4", // Default padding
@@ -23,7 +23,11 @@ const Button = ({
             }}>
             <p className="leading-normal">{text}</p>
             {image && (
-                <img src={image} alt="button-symbol" className={` ${imageClass}`} />
+                <img
+                    src={image}
+                    alt="button-symbol"
+                    className={` ${imageClass}`}
+                />
             )}
         </div>
     );

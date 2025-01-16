@@ -1,11 +1,9 @@
-import React, { useState } from "react";
 import { MenuItem, FormControl, Select, InputLabel } from "@mui/material";
 
-const SortDropdown = () => {
-    const [Sort, setSort] = useState("Featured");
+const SortDropdown = ({ isSortChange, sortBy, setIsSortChange, setSortBy }) => {
 
     const handleChange = (event) => {
-        setSort(event.target.value);
+        setSortBy(event.target.value);
     };
 
     return (
@@ -14,7 +12,7 @@ const SortDropdown = () => {
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={Sort}
+                value={sortBy}
                 label="Sort"
                 onChange={handleChange}
                 size="small"

@@ -3,6 +3,7 @@ import { Slider } from "@mui/material";
 import { Box } from "@mui/system";
 import Rating from "@mui/material/Rating";
 import Button from "../../../common/Button";
+import { useState } from "react";
 
 const Filter = ({
     priceRange,
@@ -11,62 +12,43 @@ const Filter = ({
     setDiscountRange,
     ratingValue,
     setRatingValue,
-    isLargeScreen,
+    // isLargeScreen,
     isFilterChange,
     setIsFilterChange,
 }) => {
+    const [localPriceRange, setLocalPriceRange] = useState(priceRange);
+    const [localDiscountRange, setLocalDiscountRange] = useState(discountRange);
+    const [localRatingValue, setLocalRatingValue] = useState(ratingValue);
+
     const handlePriceRangeChange = (event, newValue) => {
-        setPriceRange(newValue);
+        setLocalPriceRange(newValue);
         setIsFilterChange(true);
     };
 
     const handleDiscountRangeChange = (event, newValue) => {
-        setDiscountRange(newValue);
+        setLocalDiscountRange(newValue);
         setIsFilterChange(true);
     };
 
     const handleRatingChange = (event, newValue) => {
-        setRatingValue(newValue);
+        setLocalRatingValue(newValue);
         setIsFilterChange(true);
     };
 
     const handleApplyChanges = () => {
+        console.log("applied");
         setIsFilterChange(false);
+        setPriceRange(localPriceRange);
+        setDiscountRange(localDiscountRange);
+        setRatingValue(localRatingValue);
     };
 
     return (
-        <div
-            className=" flex flex-1 flex-col mt-4 p-2 py-6 px-4 lg:px-10 gap-6 bg-white rounded-lg shadow-lg">
+        <div className=" flex flex-1 flex-col  gap-6 ">
             <div className="flex justify-between w-full">
                 <p className="text-3xl font-semibold text-gray-800 mb-4">
                     Filter
                 </p>
-
-                {/* Apply Button */}
-                {isFilterChange ? (
-                    <Button
-                        text={"Apply"}
-                        color={"#74B83E"}
-                        textColor={"text-[white]"}
-                        fontSize={"text-lg"}
-                        padding={"px-4 py-2"}
-                        borderRadius={"rounded-md"}
-                        customClasses={"hover:bg-opacity-80 h-fit"}
-                        onClick={handleApplyChanges}
-                    />
-                ) : (
-                    <Button
-                        text={"Apply"}
-                        color={"#E0E0E0"}
-                        textColor={"text-[white]"}
-                        fontSize={"text-lg"}
-                        padding={"px-4 py-2"}
-                        borderRadius={"rounded-md"}
-                        customClasses={
-                            "hover:bg-opacity-80 h-fit cursor-default"
-                        }
-                    />
-                )}
             </div>
 
             {/* Price Range */}
@@ -74,10 +56,10 @@ const Filter = ({
                 <p className="text-lg font-medium text-gray-700">Price Range</p>
                 <Box sx={{}}>
                     <Slider
-                        value={priceRange}
+                        value={localPriceRange}
                         onChange={handlePriceRangeChange}
                         valueLabelDisplay="auto"
-                        valueLabelFormat={(value) => `$${value}`}
+                        valueLabelFormat={(value) => `\u20B9${value}`}
                         min={0}
                         max={5000}
                         disableSwap
@@ -100,8 +82,16 @@ const Filter = ({
                             display: "flex",
                             justifyContent: "space-between",
                         }}>
-                        <span className="font-medium">${priceRange[0]}</span>
-                        <span className="font-medium">${priceRange[1]}</span>
+                        <span className="font-medium">
+                            {"\u20B9"}
+                            {/* rupee symbol */}
+                            {localPriceRange[0]}
+                        </span>
+                        <span className="font-medium">
+                            {"\u20B9"}
+                            {/* rupee symbol */}
+                            {localPriceRange[1]}
+                        </span>
                     </Box>
                 </Box>
             </div>
@@ -113,7 +103,7 @@ const Filter = ({
                 </p>
                 <Box sx={{}}>
                     <Slider
-                        value={discountRange}
+                        value={localDiscountRange}
                         onChange={handleDiscountRangeChange}
                         valueLabelDisplay="auto"
                         valueLabelFormat={(value) => `${value}%`}
@@ -139,8 +129,12 @@ const Filter = ({
                             display: "flex",
                             justifyContent: "space-between",
                         }}>
-                        <span className="font-medium">{discountRange[0]}%</span>
-                        <span className="font-medium">{discountRange[1]}%</span>
+                        <span className="font-medium">
+                            {localDiscountRange[0]}%
+                        </span>
+                        <span className="font-medium">
+                            {localDiscountRange[1]}%
+                        </span>
                     </Box>
                 </Box>
             </div>
@@ -150,16 +144,44 @@ const Filter = ({
                 <p className="text-lg font-medium text-gray-700">Rating</p>
                 <Rating
                     name="product-rating"
-                    value={ratingValue}
+                    value={localRatingValue}
                     onChange={handleRatingChange}
                     precision={0.5}
-                    size={isLargeScreen ? "large" : "medium"}
+                    size="large"
                     sx={{
                         "& .MuiRating-icon": {
                             color: "#FFD700", // Gold color for stars
                         },
                     }}
                 />
+            </div>
+
+            {/* Apply Button */}
+            <div className="mx-auto">
+                {isFilterChange ? (
+                    <Button
+                        text={"Apply"}
+                        color={"#74B83E"}
+                        textColor={"text-[white]"}
+                        fontSize={"text-lg"}
+                        padding={"px-4 py-2"}
+                        borderRadius={"rounded-md"}
+                        customClasses={"hover:bg-opacity-80 h-fit"}
+                        onClick={handleApplyChanges}
+                    />
+                ) : (
+                    <Button
+                        text={"Apply"}
+                        color={"#E0E0E0"}
+                        textColor={"text-[white]"}
+                        fontSize={"text-lg"}
+                        padding={"px-4 py-2"}
+                        borderRadius={"rounded-md"}
+                        customClasses={
+                            "hover:bg-opacity-80 h-fit cursor-default"
+                        }
+                    />
+                )}
             </div>
         </div>
     );

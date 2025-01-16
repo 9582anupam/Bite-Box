@@ -5,6 +5,8 @@ import Filter from "./components/Filter"; // Import Filter component
 import Products from "./components/Products"; // Import Products component
 import "./category.css";
 import SortDropdown from "./components/SortDropdown";
+import SortDialog from "./components/SortDialog";
+import FilterDialog from "./components/FilterDialog";
 
 const Category = () => {
     const [products, setProducts] = useState([]);
@@ -13,21 +15,30 @@ const Category = () => {
     const [priceRange, setPriceRange] = useState([0, 5000]);
     const [discountRange, setDiscountRange] = useState([0, 1000]);
     const [ratingValue, setRatingValue] = useState(0);
-    const [isLargeScreen, setIsLargeScreen] = useState(false);
+    // const [isLargeScreen, setIsLargeScreen] = useState(true);
     const [isFilterChange, setIsFilterChange] = useState(false);
+    const [sortBy, setSortBy] = useState("Featured");
+    const [isSortChange, setIsSortChange] = useState(false);
+
+    useEffect(() => {
+        console.log("sortby", sortBy);
+        console.log("price range", priceRange);
+        console.log("discount range", discountRange);
+        console.log("rating value", ratingValue);
+    }, [sortBy, priceRange, discountRange, ratingValue]);
 
     // used for displaying rating stars large/small based on screen size
     // Check screen width on mount and on window resize
-    useEffect(() => {
-        const handleResize = () => {
-            setIsLargeScreen(window.innerWidth > 1024); // Set to true for screens wider than 'lg' (1024px)
-        };
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         setIsLargeScreen(window.innerWidth > 1024); // Set to true for screens wider than 'lg' (1024px)
+    //     };
 
-        handleResize(); // Check on initial render
-        window.addEventListener("resize", handleResize); // Add resize event listener
+    //     handleResize(); // Check on initial render
+    //     window.addEventListener("resize", handleResize); // Add resize event listener
 
-        return () => window.removeEventListener("resize", handleResize); // Cleanup on unmount
-    }, []);
+    //     return () => window.removeEventListener("resize", handleResize); // Cleanup on unmount
+    // }, []);
 
     useEffect(() => {
         // Reset the scroll position when the component is mounted or category changes
@@ -62,14 +73,18 @@ const Category = () => {
 
                     {/* Sorting Dropdown */}
                     <div className="absolute right-8 top-8 hidden md:block">
-                        <SortDropdown />
+                        <SortDropdown
+                            sortBy={sortBy}
+                            setSortBy={setSortBy}
+                            isSortChange={isSortChange}
+                            setIsSortChange={setIsSortChange}
+                        />
                     </div>
                 </div>
 
-                <div className="flex justify-between ">
+                <div className="flex justify-between relative">
                     {/* Filters Sidebar */}
-                    <div
-                        className="hidden md:block sticky top-56 mb-28 lg:w-1/4 min-w-[30%] h-fit">
+                    <div className="hidden md:block sticky p-2 px-4 lg:px-10 top-56 mb-28 lg:w-1/4 min-w-[30%] h-fit bg-white rounded-lg shadow-lg">
                         <Filter
                             priceRange={priceRange}
                             setPriceRange={setPriceRange}
@@ -77,7 +92,7 @@ const Category = () => {
                             setDiscountRange={setDiscountRange}
                             ratingValue={ratingValue}
                             setRatingValue={setRatingValue}
-                            isLargeScreen={isLargeScreen}
+                            // isLargeScreen={isLargeScreen}
                             isFilterChange={isFilterChange}
                             setIsFilterChange={setIsFilterChange}
                         />
@@ -85,6 +100,28 @@ const Category = () => {
 
                     {/* Products List */}
                     <Products products={products} loading={loading} />
+
+                    <div className="fixed right-6 bottom-6 flex gap-2 md:hidden">
+                        {/* Sorting Dialog */}
+                        <SortDialog
+                            sortBy={sortBy}
+                            setSortBy={setSortBy}
+                            isSortChange={isSortChange}
+                            setIsSortChange={setIsSortChange}
+                        />
+                        {/* Filter Dialog */}
+                        <FilterDialog
+                            priceRange={priceRange}
+                            setPriceRange={setPriceRange}
+                            discountRange={discountRange}
+                            setDiscountRange={setDiscountRange}
+                            ratingValue={ratingValue}
+                            setRatingValue={setRatingValue}
+                            // isLargeScreen={isLargeScreen}
+                            isFilterChange={isFilterChange}
+                            setIsFilterChange={setIsFilterChange}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
