@@ -58,48 +58,42 @@ const createProduct = async (req, res) => {
 
 const getProductByCategory = async (req, res) => {
     try {
-        let category = req.params.category;
-        category = capitalizeWords(category);
+        const category = capitalizeWords(req.params.category);
 
-        // Helper function to handle category-based logic
-        const getCategoryProducts = async (category) => {
-            switch (category) {
-                case "Today's Deal":
-                    return await Product.aggregate([{ $sample: { size: 30 } }]);
-                case "Top Rated":
-                    return await Product.find({ rating: { $gt: 4.7 } });
-                case "Offers":
-                    return await Product.find({ discount: { $gt: 0.19 } });
-                default:
-                    return null; // For any other category not handled specifically
-            }
+        // Special categories with custom logic
+        const specialCategories = {
+            "Today's Deal": async () =>
+                await Product.aggregate([{ $sample: { size: 30 } }]),
+            "Top Rated": async () =>
+                await Product.find({ rating: { $gt: 4.7 } }),
+            "Offers": async () => await Product.find({ discount: { $gt: 0.19 } }),
         };
 
-        // Attempt to find products for the category
-        let products = await Product.find({ category });
-
-        if (products.length === 0) {
-            // If no products found, handle special categories
-            const specialCategoryProducts = await getCategoryProducts(category);
-
-            if (specialCategoryProducts) {
-                return res.status(200).json({
-                    message: `List of products in special category '${category}'`,
-                    products: specialCategoryProducts,
-                    status: 200,
-                });
-            } else {
-                return res.status(404).json({
-                    message: `No products found in category '${category}'`,
-                    status: 404,
-                });
-            }
+        // Check if the category is a special category
+        if (specialCategories[category]) {
+            const products = await specialCategories[category]();
+            return res.status(200).json({
+                message: `List of products in special category '${category}'`,
+                products,
+                status: 200,
+            });
         }
 
-        return res.status(200).json({
-            message: `List of products by category '${category}'`,
-            products: products,
-            status: 200,
+        // Fetch products by regular category
+        const products = await Product.find({ category });
+
+        if (products.length > 0) {
+            return res.status(200).json({
+                message: `List of products in category '${category}'`,
+                products,
+                status: 200,
+            });
+        }
+
+        // No products found
+        return res.status(404).json({
+            message: `No products found in category '${category}'`,
+            status: 404,
         });
     } catch (error) {
         console.error(error);
