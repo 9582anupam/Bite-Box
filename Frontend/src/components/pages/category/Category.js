@@ -13,7 +13,7 @@ const Category = () => {
     const [loading, setLoading] = useState(true);
     const { id: category } = useParams();
     const [priceRange, setPriceRange] = useState([0, 5000]);
-    const [discountRange, setDiscountRange] = useState([0, 1000]);
+    const [discountRange, setDiscountRange] = useState([0, 100]);
     const [ratingValue, setRatingValue] = useState(0);
     // const [isLargeScreen, setIsLargeScreen] = useState(true);
     const [isFilterChange, setIsFilterChange] = useState(false);
