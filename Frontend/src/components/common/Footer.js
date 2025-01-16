@@ -6,6 +6,8 @@ import instagram from "../../utils/images/footer/instagram.png";
 import facebook from "../../utils/images/footer/facebook.png";
 import youtube from "../../utils/images/footer/youtube.png";
 import x from "../../utils/images/footer/twitter.png";
+import { Link } from "react-router-dom";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const Footer = () => {
     // Home
@@ -53,7 +55,11 @@ const Footer = () => {
                         <img src={logo} alt="logo" />
                         <div className="flex gap-2">
                             {/* location img */}
-                            <img src={location} alt="location" className="w-6 h-6"/>
+                            <img
+                                src={location}
+                                alt="location"
+                                className="w-6 h-6"
+                            />
                             <p className="leading-5 font-medium">
                                 <span className="font-bold">Address: </span>Shop
                                 No. 10, lorem ipsum,
@@ -81,7 +87,9 @@ const Footer = () => {
                         <h3 className="font-bold text-3xl mb-3">Quick Links</h3>
                         <div className="flex flex-col gap-1">
                             {quickLinks.map((link, index) => (
-                                <p key={index} className="text-lg font-medium cursor-pointer w-fit">
+                                <p
+                                    key={index}
+                                    className="text-lg font-medium cursor-pointer w-fit">
                                     {link}
                                 </p>
                             ))}
@@ -91,7 +99,9 @@ const Footer = () => {
                         <h3 className="font-bold text-3xl mb-3">Categories</h3>
                         <div className="flex flex-col gap-1">
                             {categories.map((category, index) => (
-                                <p key={index} className="text-lg font-medium cursor-pointer w-fit">
+                                <p
+                                    key={index}
+                                    className="text-lg font-medium cursor-pointer w-fit">
                                     {category}
                                 </p>
                             ))}
@@ -102,15 +112,30 @@ const Footer = () => {
                         <div className="flex gap-2 cursor-pointer">
                             {socialMedia.map((icon, index) => (
                                 <div key={index}>
-                                    <img src={icon} alt={icon.name} className="w-8" />
+                                    <img
+                                        src={icon}
+                                        alt={icon.name}
+                                        className="w-8"
+                                    />
                                 </div>
                             ))}
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="bg-[#515151] w-full flex justify-center items-center">
-                <p className="text-white py-4 font-poppins font-medium text-xl">&copy; 2024 BiteBox. All rights reserved.</p>
+            <div className="bg-[#515151] w-full flex justify-center items-center flex-col">
+                <p className="text-white mt-2 font-poppins font-medium text-xl">
+                    &copy; 2025 BiteBox. All rights reserved.
+                </p>
+                <Link
+                    to="https://www.github.com/9582anupam"
+                    className="flex items-center gap-2 mb-2">
+                    <p className="text-[#FF0000] font-poppins font-medium text-xl">
+                        Developed by github.com/9582anupam
+                    </p>
+                    {/* white color icon */}
+                    <OpenInNewIcon className="w-6 h-6 text-[#FF0000]" />
+                </Link>
             </div>
         </footer>
     );
