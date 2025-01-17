@@ -59,7 +59,8 @@ const createProduct = async (req, res) => {
 const getProductByCategory = async (req, res) => {
     try {
         const category = capitalizeWords(req.params.category);
-        const { priceMin, priceMax, discountMin, discountMax, rating, sortBy } = req.query;
+        const { priceMin, priceMax, discountMin, discountMax, rating, sortBy } =
+            req.query;
 
         // Construct query filters
         let filterQuery = {};
@@ -101,7 +102,7 @@ const getProductByCategory = async (req, res) => {
                 await Product.aggregate([{ $sample: { size: 30 } }]),
             "Top Rated": async () =>
                 await Product.find({ rating: { $gt: 3.5 } }).lean(),
-            "Offers": async () =>
+            Offers: async () =>
                 await Product.find({ discount: { $gt: 0.19 } }).lean(),
         };
 
@@ -126,14 +127,17 @@ const getProductByCategory = async (req, res) => {
             products = products.filter((product) => {
                 const satisfiesPrice =
                     !filterQuery.discountedPrice ||
-                    (product.discountedPrice >= filterQuery.discountedPrice.$gte &&
-                        product.discountedPrice <= filterQuery.discountedPrice.$lte);
+                    (product.discountedPrice >=
+                        filterQuery.discountedPrice.$gte &&
+                        product.discountedPrice <=
+                            filterQuery.discountedPrice.$lte);
                 const satisfiesDiscount =
                     !filterQuery.discount ||
                     (product.discount >= filterQuery.discount.$gte &&
                         product.discount <= filterQuery.discount.$lte);
                 const satisfiesRating =
-                    !filterQuery.rating || product.rating >= filterQuery.rating.$gte;
+                    !filterQuery.rating ||
+                    product.rating >= filterQuery.rating.$gte;
                 return satisfiesPrice && satisfiesDiscount && satisfiesRating;
             });
 
@@ -150,7 +154,9 @@ const getProductByCategory = async (req, res) => {
             // Apply sorting if applicable
             const sortOptions = getSortOptions(sortBy);
             if (sortOptions) {
-                products = await Product.find(filterQuery).sort(sortOptions).lean();
+                products = await Product.find(filterQuery)
+                    .sort(sortOptions)
+                    .lean();
             }
         }
 
@@ -176,7 +182,6 @@ const getProductByCategory = async (req, res) => {
         });
     }
 };
-
 
 const getAllProductsStructuredByCategory = async (req, res) => {
     try {

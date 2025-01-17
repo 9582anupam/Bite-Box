@@ -108,8 +108,12 @@ const Category = () => {
                         <Products products={products} loading={loading} />
                     ) : (
                         <div className="flex-1 flex items-center flex-col mt-[10%]">
-                            <p className="text-center text-3xl font-bold text-red-500">No Products Found</p>
-                            <p className="text-center text-lg">Please try a different filter.</p>
+                            <p className="text-center text-3xl font-bold text-red-500">
+                                No Products Found
+                            </p>
+                            <p className="text-center text-lg">
+                                Please try a different filter.
+                            </p>
                         </div>
                     )}
 
