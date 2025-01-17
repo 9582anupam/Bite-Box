@@ -12,7 +12,7 @@ const Category = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const { id: category } = useParams();
-    const [priceRange, setPriceRange] = useState([0, 5000]);
+    const [priceRange, setPriceRange] = useState([0, 200]);
     const [discountRange, setDiscountRange] = useState([0, 100]);
     const [ratingValue, setRatingValue] = useState(0);
     // const [isLargeScreen, setIsLargeScreen] = useState(true);
@@ -47,21 +47,26 @@ const Category = () => {
         const fetchProducts = async () => {
             try {
                 const backendUrl = process.env.REACT_APP_BACKEND_URL;
-                // const response = await axios.get(
-                //     `${backendUrl}/api/v1/products/category/${category}?priceMin=${priceRange[0]}&priceMax=${priceRange[1]}&discountMin=${discountRange[0]}&discountMax=${discountRange[1]}&rating=${ratingValue}`
-                // );/
                 const response = await axios.get(
-                    `${backendUrl}/api/v1/products/category/${category}`
+                    `${backendUrl}/api/v1/products/category/${category}?priceMin=${priceRange[0]}&priceMax=${priceRange[1]}&discountMin=${discountRange[0]}&discountMax=${discountRange[1]}&rating=${ratingValue}&sortBy=${sortBy}`
                 );
-                setProducts(response.data.products);
-                setLoading(false);
+                // const response = await axios.get(
+                //     `${backendUrl}/api/v1/products/category/${category}`
+                // );
+                if (response.status === 200) {
+                    setProducts(response.data.products);
+                    setLoading(false);
+                } else {
+                    console.log("No Product found");
+                    setProducts([]);
+                }
             } catch (error) {
                 console.log(error);
                 setLoading(true);
             }
         };
         fetchProducts();
-    }, [category]);
+    }, [category, priceRange, discountRange, ratingValue, sortBy]);
 
     return (
         <div className="bg-[#ecffe9]">
@@ -99,7 +104,14 @@ const Category = () => {
                     </div>
 
                     {/* Products List */}
-                    <Products products={products} loading={loading} />
+                    {products.length > 0 ? (
+                        <Products products={products} loading={loading} />
+                    ) : (
+                        <div className="flex-1 flex items-center flex-col mt-[10%]">
+                            <p className="text-center text-3xl font-bold text-red-500">No Products Found</p>
+                            <p className="text-center text-lg">Please try a different filter.</p>
+                        </div>
+                    )}
 
                     <div className="fixed right-6 bottom-6 flex gap-2 md:hidden">
                         {/* Sorting Dialog */}

@@ -59,29 +59,102 @@ const createProduct = async (req, res) => {
 const getProductByCategory = async (req, res) => {
     try {
         const category = capitalizeWords(req.params.category);
+        const { priceMin, priceMax, discountMin, discountMax, rating, sortBy } = req.query;
 
-        // Special categories with custom logic
+        // Construct query filters
+        let filterQuery = {};
+
+        if (priceMin && priceMax) {
+            filterQuery.discountedPrice = {
+                $gte: Number(priceMin),
+                $lte: Number(priceMax),
+            };
+        }
+        if (discountMin && discountMax) {
+            filterQuery.discount = {
+                $gte: Number(discountMin),
+                $lte: Number(discountMax),
+            };
+        }
+        if (rating) {
+            filterQuery.rating = { $gte: Number(rating) };
+        }
+
+        const getSortOptions = (sortBy) => {
+            switch (sortBy) {
+                case "Price: High to Low":
+                    return { discountedPrice: -1 };
+                case "Price: Low to High":
+                    return { discountedPrice: 1 };
+                case "Discount: High to Low":
+                    return { discount: -1 };
+                case "Discount: Low to High":
+                    return { discount: 1 };
+                case "Featured":
+                default:
+                    return null;
+            }
+        };
+
         const specialCategories = {
             "Today's Deal": async () =>
                 await Product.aggregate([{ $sample: { size: 30 } }]),
             "Top Rated": async () =>
-                await Product.find({ rating: { $gt: 4.7 } }),
-            Offers: async () => await Product.find({ discount: { $gt: 0.19 } }),
+                await Product.find({ rating: { $gt: 3.5 } }).lean(),
+            "Offers": async () =>
+                await Product.find({ discount: { $gt: 0.19 } }).lean(),
         };
+
+        let products;
 
         // Check if the category is a special category
         if (specialCategories[category]) {
-            const products = await specialCategories[category]();
-            return res.status(200).json({
-                message: `List of products in special category '${category}'`,
-                products,
-                status: 200,
+            products = await specialCategories[category]();
+
+            // Normalize structure if data doesn't have lean applied
+            if (!products[0]._id) {
+                products = products.map((product) => ({
+                    ...product._doc,
+                    discountedPrice:
+                        product.discountedPrice || product.price || 0,
+                    discount: product.discount || 0,
+                    rating: product.rating || 0,
+                }));
+            }
+
+            // Apply filters
+            products = products.filter((product) => {
+                const satisfiesPrice =
+                    !filterQuery.discountedPrice ||
+                    (product.discountedPrice >= filterQuery.discountedPrice.$gte &&
+                        product.discountedPrice <= filterQuery.discountedPrice.$lte);
+                const satisfiesDiscount =
+                    !filterQuery.discount ||
+                    (product.discount >= filterQuery.discount.$gte &&
+                        product.discount <= filterQuery.discount.$lte);
+                const satisfiesRating =
+                    !filterQuery.rating || product.rating >= filterQuery.rating.$gte;
+                return satisfiesPrice && satisfiesDiscount && satisfiesRating;
             });
+
+            // Apply sorting
+            const sortOptions = getSortOptions(sortBy);
+            if (sortOptions) {
+                const [key, order] = Object.entries(sortOptions)[0];
+                products.sort((a, b) => (a[key] > b[key] ? order : -order));
+            }
+        } else {
+            filterQuery.category = category;
+            products = await Product.find(filterQuery).lean();
+
+            // Apply sorting if applicable
+            const sortOptions = getSortOptions(sortBy);
+            if (sortOptions) {
+                products = await Product.find(filterQuery).sort(sortOptions).lean();
+            }
         }
 
-        // Fetch products by regular category
-        const products = await Product.find({ category });
-
+        // Return the products found
         if (products.length > 0) {
             return res.status(200).json({
                 message: `List of products in category '${category}'`,
@@ -90,10 +163,9 @@ const getProductByCategory = async (req, res) => {
             });
         }
 
-        // No products found
-        return res.status(404).json({
+        return res.status(204).json({
             message: `No products found in category '${category}'`,
-            status: 404,
+            status: 204,
         });
     } catch (error) {
         console.error(error);
@@ -105,11 +177,12 @@ const getProductByCategory = async (req, res) => {
     }
 };
 
+
 const getAllProductsStructuredByCategory = async (req, res) => {
     try {
         const products = await Product.find({});
         const topRated = await Product.find({ rating: { $gt: 4.7 } });
-        const topOffer = await Product.find({ discount: { $gt: 0.19 } });
+        const topOffer = await Product.find({ discount: { $gt: 0.3 } });
         const todaysDeal = await Product.aggregate([{ $sample: { size: 30 } }]);
         let structuredProducts = {};
         products.forEach((product) => {

@@ -61,7 +61,7 @@ const Filter = ({
                         valueLabelDisplay="auto"
                         valueLabelFormat={(value) => `\u20B9${value}`}
                         min={0}
-                        max={5000}
+                        max={200}
                         disableSwap
                         sx={{
                             "& .MuiSlider-rail": {

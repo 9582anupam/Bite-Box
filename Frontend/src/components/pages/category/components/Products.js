@@ -5,7 +5,7 @@ import ProductCardShimmer from "../../../common/ProductCardShimmer";
 
 const Products = ({ products, loading }) => {
     return (
-        <div className="pb-20">
+        <div className="pb-20 flex-1">
             <div className="product-container flex flex-wrap justify-evenly">
                 {loading
                     ? Array(8)
