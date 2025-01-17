@@ -11,6 +11,11 @@ import FilterDialog from "./components/FilterDialog";
 const Category = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    // maintaining content not found state is necessary because there are three different type of behavious we have to display
+    // 1) the loading state: when api is fetching the data and we don't know yet if product exist or not with the given filter, in this state the product takes the loading variable and if loading is true then shimmer is loaded
+    // 2) the content not found state: this state tells us that the product is not found in the api so display no product found UI
+    // 3) Not Loading and content found: this state tells us that the product is found in the api so display the product
+    const [contentNotFound, setContentNotFound] = useState(false);
     const { id: category } = useParams();
     const [priceRange, setPriceRange] = useState([0, 200]);
     const [discountRange, setDiscountRange] = useState([0, 100]);
@@ -56,9 +61,11 @@ const Category = () => {
                 if (response.status === 200) {
                     setProducts(response.data.products);
                     setLoading(false);
+                    setContentNotFound(false);
                 } else {
                     console.log("No Product found");
                     setProducts([]);
+                    setContentNotFound(true);
                 }
             } catch (error) {
                 console.log(error);
@@ -104,9 +111,8 @@ const Category = () => {
                     </div>
 
                     {/* Products List */}
-                    {products.length > 0 ? (
-                        <Products products={products} loading={loading} />
-                    ) : (
+
+                    {contentNotFound ? (
                         <div className="flex-1 flex items-center flex-col mt-[10%]">
                             <p className="text-center text-3xl font-bold text-red-500">
                                 No Products Found
@@ -115,6 +121,8 @@ const Category = () => {
                                 Please try a different filter.
                             </p>
                         </div>
+                    ) : (
+                        <Products products={products} loading={loading} />
                     )}
 
                     <div className="fixed right-6 bottom-6 flex gap-2 md:hidden">
