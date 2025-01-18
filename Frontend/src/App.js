@@ -9,6 +9,7 @@ import Category from "./components/pages/category/Category";
 import SearchBar from "./components/common/SearchBar";
 import Footer from "./components/common/Footer";
 import "./components/common/sidebar/sidebar.css";
+import Product from "./components/pages/product/Product";
 
 function App() {
     const [isSidebarActive, setIsSidebarActive] = useState(false);
@@ -62,6 +63,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/category/:id" element={<Category />} />
+                        <Route path="/product/:id" element={<Product />} />
                     </Routes>
                 </div>
                 <div>
