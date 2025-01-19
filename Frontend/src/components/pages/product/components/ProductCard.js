@@ -16,8 +16,9 @@ const ProductCard = ({ product }) => {
         isOrganic,
     } = product;
 
-    // State for the quantity
     const [quantity, setQuantity] = useState(1);
+    const [isHovering, setIsHovering] = useState(false);
+    const [magnifyStyle, setMagnifyStyle] = useState({});
 
     // Handlers for incrementing and decrementing
     const handleIncrement = () => {
@@ -32,15 +33,38 @@ const ProductCard = ({ product }) => {
         }
     };
 
+    const handleMouseMove = (e) => {
+        setIsHovering(true);
+        const rect = e.target.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+        setMagnifyStyle({
+            backgroundImage: `url(${imageurl})`,
+            backgroundPosition: `${x}% ${y}%`,
+        });
+    };
+
     return (
         <div>
             <div className="flex pt-20 font-poppins text-lg sm:justify-evenly sm:flex-row flex-col sm:w-auto w-fit mx-auto sm:mx-0">
-                <div className="sm:mx-0 w-fit sm:w-auto">
+                <div
+                    className="relative sm:mx-0 w-fit sm:w-auto"
+                    onMouseLeave={() => setIsHovering(false)}
+                    onMouseMove={handleMouseMove}>
                     <img
                         src={imageurl}
                         alt={name}
-                        className="h-[22rem] w-[20rem] sm:h-[24rem] sm:w-[22rem] md:h-[28rem] md:w-[25rem] lg:h-[30rem] lg:w-[28rem] border-2 border-gray-300 rounded-md shadow-xl"
+                        className="h-[22rem] w-[20rem] sm:h-[24rem] sm:w-[22rem] md:h-[28rem] md:w-[25rem] lg:h-[30rem] lg:w-[28rem] border-2 border-gray-300 rounded-md shadow-xl hover:cursor-crosshair"
                     />
+                    {isHovering && (
+                        <div
+                            className="absolute top-0 left-[120%] h-[22rem] w-[20rem] sm:h-[24rem] sm:w-[22rem] md:h-[28rem] md:w-[25rem] lg:h-[30rem] lg:w-[28rem] bg-no-repeat bg-cover border-2 border-gray-300 rounded-md shadow-xl z-10"
+                            style={{
+                                ...magnifyStyle,
+                                backgroundSize: "200%",
+                            }}></div>
+                    )}
                 </div>
                 <div className="sm:ml-6 md:ml-10 flex flex-col gap-4 w-fit mt-8 sm:mt-0 md:mt:0">
                     <p className="text-5xl font-semibold lg:text-5xl sm:text-5xl md:text-4xl w-fit md:w-auto max-w-[20rem] md:max-w-fit">
