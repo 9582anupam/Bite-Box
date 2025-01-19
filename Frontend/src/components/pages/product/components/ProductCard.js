@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
     } = product;
 
     // State for the quantity
-    const [quantity, setQuantity] = useState(88);
+    const [quantity, setQuantity] = useState(1);
 
     // Handlers for incrementing and decrementing
     const handleIncrement = () => {
@@ -36,25 +36,20 @@ const ProductCard = ({ product }) => {
 
     return (
         <div>
-            <div className="flex pt-20 font-poppins text-lg justify-evenly">
-                <div>
+            <div className="flex pt-20 font-poppins text-lg md:justify-evenly md:flex-row flex-col md:items-center md:w-auto w-fit mx-auto md:mx-0">
+                <div className="md:mx-0">
                     <img
                         src={imageurl}
                         alt={name}
-                        className="h-[30rem] w-[28rem] md:h-[28rem] md:w-[25rem] lg:h-[30rem] lg:w-[28rem] border-2 border-gray-300 rounded-md shadow-xl"
+                        className="h-[22rem] w-[20rem] md:h-[28rem] md:w-[25rem] lg:h-[30rem] lg:w-[28rem] border-2 border-gray-300 rounded-md shadow-xl"
                     />
                 </div>
-                <div className="ml-10 flex flex-col gap-4">
+                <div className="md:ml-10 flex flex-col gap-4 w-fit mt-8 md:mt:0">
                     <p className="text-5xl font-semibold lg:text-5xl md:text-4xl">
                         {name}
                     </p>
                     <div className="flex items-center">
-                        <Rating
-                            name="read-only"
-                            value={rating}
-                            readOnly
-                            size="large"
-                        />
+                        <Rating name="read-only" value={rating} size="large" />
                     </div>
                     <p className="text-green-600 text-xl font-medium lg:text-xl md:text-lg">
                         You save:{" "}
@@ -90,7 +85,7 @@ const ProductCard = ({ product }) => {
                             Organic: Yes
                         </p>
                     )}
-                    <div className="flex items-center gap-4 justify-center">
+                    <div className="flex md:items-center gap-4 justify-center flex-col md:flex-row">
                         <div className="flex items-center">
                             <button
                                 className="quantity-btn bg-white border-2 border-gray-300 text-gray-800 w-12 h-10 rounded-l-md flex items-center justify-center text-2xl font-semibold lg:w-12 lg:h-10 lg:text-2xl md:w-10 md:h-9 md:text-xl hover:bg-green-600 hover:text-white disabled:bg-gray-300 disabled:text-gray-400 disabled:border-gray-300 disabled:cursor-not-allowed transition-all duration-300"
