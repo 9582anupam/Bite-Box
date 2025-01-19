@@ -37,7 +37,7 @@ const ProductCard = ({ product }) => {
     return (
         <div>
             <div className="flex pt-20 font-poppins text-lg md:justify-evenly md:flex-row flex-col md:items-center md:w-auto w-fit mx-auto md:mx-0">
-                <div className="md:mx-0">
+                <div className="md:mx-0 w-fit md:w-auto">
                     <img
                         src={imageurl}
                         alt={name}
@@ -45,11 +45,11 @@ const ProductCard = ({ product }) => {
                     />
                 </div>
                 <div className="md:ml-10 flex flex-col gap-4 w-fit mt-8 md:mt:0">
-                    <p className="text-5xl font-semibold lg:text-5xl md:text-4xl">
+                    <p className="text-5xl font-semibold lg:text-5xl md:text-4xl w-fit md:w-auto max-w-[20rem] md:max-w-fit">
                         {name}
                     </p>
-                    <div className="flex items-center">
-                        <Rating name="read-only" value={rating} size="large" />
+                    <div className="flex items-center w-fit md:w-auto">
+                        <Rating value={rating} size="large" readOnly />
                     </div>
                     <p className="text-green-600 text-xl font-medium lg:text-xl md:text-lg">
                         You save:{" "}
