@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
 
     return (
         <div>
-            <div className="flex pt-20 font-poppins text-lg md:justify-evenly md:flex-row flex-col md:items-center md:w-auto w-fit mx-auto md:mx-0">
+            <div className="flex pt-20 font-poppins text-lg md:justify-evenly md:flex-row flex-col  md:w-auto w-fit mx-auto md:mx-0">
                 <div className="md:mx-0 w-fit md:w-auto">
                     <img
                         src={imageurl}
