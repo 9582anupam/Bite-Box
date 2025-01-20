@@ -8,9 +8,9 @@ import youtube from "../../utils/images/footer/youtube.png";
 import x from "../../utils/images/footer/twitter.png";
 import { Link } from "react-router-dom";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import "./footer.css";
 
 const Footer = () => {
-
     const quickLinks = [
         "about",
         "contact",
@@ -103,17 +103,19 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-[#515151] w-full flex justify-center items-center flex-col">
+            <div className="bg-[#000] w-full flex justify-center items-center flex-col">
                 <p className="text-white mt-2 font-poppins font-medium text-xl">
                     &copy; 2025 BiteBox. All rights reserved.
                 </p>
                 <Link
                     to="https://www.linkedin.com/in/9582anupam"
                     className="flex items-center gap-2 mb-2">
-                    <p className="text-[#FF0000] font-mono font-bold text-xl py-1">
-                        Developed by @9582anupam
+                    <p className="font-mono font-bold text-xl py-1">
+                        <span className="shiny-text text-[#FF0000]">
+                            Developed by @9582anupam
+                        </span>
                         {/* white color icon */}
-                        <OpenInNewIcon className="w-6 h-6 text-[#FF0000] ml-2" />
+                        <OpenInNewIcon className="w-6 h-6 text-white ml-1 " />
                     </p>
                 </Link>
             </div>
