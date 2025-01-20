@@ -30,7 +30,7 @@ const Product = () => {
     }, [id]);
 
     return (
-        <div className="bg-[#ecffe9]">
+        <div className="bg-[#ecffe9] pb-40">
             <div className="lg:px-28 md: sm: px-4 w-full ">
                 {product && <ProductCard product={product} />}
             </div>

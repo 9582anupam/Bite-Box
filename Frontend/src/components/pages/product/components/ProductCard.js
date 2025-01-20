@@ -7,6 +7,7 @@ const ProductCard = ({ product }) => {
         name,
         price,
         category,
+        description,
         quantityInStock,
         unit,
         imageurl,
@@ -149,6 +150,16 @@ const ProductCard = ({ product }) => {
                         </button>
                     </div>
                 </div>
+            </div>
+
+            {/* description */}
+            <div className="mt-8 md:mt-16 px-6 font-poppins flex md:flow-row flex-col gap-2 items-baseline">
+                <p className="text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl">
+                    Description:
+                </p>
+                <p className="text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-2xl w-fit">
+                    {description}
+                </p>
             </div>
         </div>
     );
