@@ -10,26 +10,6 @@ import { Link } from "react-router-dom";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const Footer = () => {
-    // Home
-    // Quick Links
-    // About Us
-    // Contact Us
-    // Privacy Policy
-    // Terms & Conditions
-    // Account
-
-    // Categories
-    // Vegetables
-    // Fruits
-    // Snacks
-    // Offers
-    // Best sellers
-
-    // Connect
-    // Facebook
-    // Twitter
-    // Instagram
-    // Youtube
 
     const quickLinks = [
         "about",
@@ -128,13 +108,13 @@ const Footer = () => {
                     &copy; 2025 BiteBox. All rights reserved.
                 </p>
                 <Link
-                    to="https://www.github.com/9582anupam"
+                    to="https://www.linkedin.com/in/9582anupam"
                     className="flex items-center gap-2 mb-2">
-                    <p className="text-[#FF0000] font-poppins font-medium text-xl">
-                        Developed by github.com/9582anupam
+                    <p className="text-[#FF0000] font-mono font-bold text-xl py-1">
+                        Developed by @9582anupam
+                        {/* white color icon */}
+                        <OpenInNewIcon className="w-6 h-6 text-[#FF0000] ml-2" />
                     </p>
-                    {/* white color icon */}
-                    <OpenInNewIcon className="w-6 h-6 text-[#FF0000]" />
                 </Link>
             </div>
         </footer>
