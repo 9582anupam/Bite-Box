@@ -2,17 +2,12 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "./components/ProductCard";
+import ProductCardSkeleton from "./components/ProductCardSkeleton";
 
 const Product = () => {
-    // Fetch product data from an API
     const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
     const { id } = useParams();
-
-    // const backendUrl = process.env.REACT_APP_BACKEND_URL;
-    // router.route("/product/:id").get(getProductById);
-    // const response = await axios.get(
-    //     `${backendUrl}/api/v1/products/product/${id}`
-    // );
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -23,7 +18,9 @@ const Product = () => {
                 );
                 setProduct(response.data.product[0]);
             } catch (error) {
-                console.log(error);
+                console.error(error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchProduct();
@@ -31,8 +28,16 @@ const Product = () => {
 
     return (
         <div className="bg-[#ecffe9] pb-40">
-            <div className="lg:px-28 md: sm: px-4 w-full ">
-                {product && <ProductCard product={product} />}
+            <div className="lg:px-28 md:sm:px-4 w-full">
+                {loading ? (
+                    <ProductCardSkeleton />
+                ) : product ? (
+                    <ProductCard product={product} />
+                ) : (
+                    <p className="text-center text-xl font-semibold">
+                        Product not found.
+                    </p>
+                )}
             </div>
         </div>
     );
