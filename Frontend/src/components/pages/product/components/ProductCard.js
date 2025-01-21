@@ -48,7 +48,7 @@ const ProductCard = ({ product }) => {
 
     return (
         <div>
-            <div className="flex pt-20 font-poppins text-lg sm:justify-evenly sm:flex-row flex-col sm:w-auto w-fit mx-auto sm:mx-0">
+            <div className="flex pt-20 font-poppins text-lg sm:justify- sm:items-start items-center sm:flex-row flex-col mx-auto ">
                 <div
                     className="relative sm:mx-0 w-fit sm:w-auto"
                     onMouseLeave={() => setIsHovering(false)}
@@ -108,7 +108,7 @@ const ProductCard = ({ product }) => {
                             Organic: Yes
                         </p>
                     )}
-                    <div className="flex md:items-center gap-4 justify-center flex-col md:flex-row">
+                    <div className="flex md:items-center gap-4 flex-col md:flex-row">
                         <div className="flex items-center">
                             <button
                                 className="quantity-btn bg-white border-2 border-gray-300 text-gray-800 w-12 h-10 rounded-l-md flex items-center justify-center text-2xl font-semibold lg:w-12 lg:h-10 lg:text-2xl sm:w-12 sm:h-10 sm:text-2xl md:w-10 md:h-9 md:text-xl hover:bg-green-600 hover:text-white disabled:bg-gray-300 disabled:text-gray-400 disabled:border-gray-300 disabled:cursor-not-allowed transition-all duration-300"
@@ -145,15 +145,13 @@ const ProductCard = ({ product }) => {
                             </button>
                         </div>
                         {/* add to cart button */}
-                        <button className="bg-[#74B83E] text-white text-2xl font-semibold w-48 h-12 rounded-md hover:bg-[#81cb44] transition-all duration-300 lg:w-48 lg:h-12 lg:text-2xl sm:w-48 sm:h-12 sm:text-2xl md:w-40 md:h-10 md:text-xl">
+                        <button className="bg-[#74B83E] text-white text-2xl font-semibold h-12 rounded-md hover:bg-[#81cb44] transition-all duration-300 lg:w-48 lg:h-12 lg:text-2xl sm:w-48 sm:h-12 sm:text-2xl md:w-40 md:h-10 md:text-xl w-full">
                             Add to Cart
                         </button>
                     </div>
                 </div>
             </div>
-
-            {/* description */}
-            <div className="mt-8 md:mt-16 px-6 font-poppins flex md:flow-row flex-col gap-2 items-baseline">
+            <div className="mt-8 md:mt-16 font-poppins flex md:flow-row flex-col gap-2 items-baseline">
                 <p className="text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl">
                     Description:
                 </p>
@@ -161,6 +159,8 @@ const ProductCard = ({ product }) => {
                     {description}
                 </p>
             </div>
+
+            {/* description */}
         </div>
     );
 };

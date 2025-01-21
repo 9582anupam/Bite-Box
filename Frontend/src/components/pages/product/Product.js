@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "./components/ProductCard";
 import ProductCardSkeleton from "./components/ProductCardSkeleton";
+import RecommendedProduct from "./components/RecommendProduct";
 
 const Product = () => {
     const [product, setProduct] = useState(null);
@@ -28,7 +29,7 @@ const Product = () => {
 
     return (
         <div className="bg-[#ecffe9] pb-40">
-            <div className="lg:px-28 md:sm:px-4 w-full">
+            <div className="w-11/12 sm:w-11/12 md:w-10/12 lg:w-9/12 mx-auto">
                 {loading ? (
                     <ProductCardSkeleton />
                 ) : product ? (
@@ -38,6 +39,9 @@ const Product = () => {
                         Product not found.
                     </p>
                 )}
+            </div>
+            <div className="mt-40 sm:mt-52 sample">
+                <RecommendedProduct />
             </div>
         </div>
     );
