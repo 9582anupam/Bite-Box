@@ -10,6 +10,7 @@ import SearchBar from "./components/common/SearchBar";
 import Footer from "./components/common/Footer";
 import "./components/common/sidebar/sidebar.css";
 import Product from "./components/pages/product/Product";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 function App() {
     const [isSidebarActive, setIsSidebarActive] = useState(false);
@@ -39,6 +40,7 @@ function App() {
 
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <div className="App">
                 <div className="fixed z-40 w-full">
                     <div

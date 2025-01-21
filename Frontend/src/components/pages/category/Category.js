@@ -47,7 +47,6 @@ const Category = () => {
 
     useEffect(() => {
         // Reset the scroll position when the component is mounted or category changes
-        window.scrollTo(0, 0);
 
         const fetchProducts = async () => {
             try {
