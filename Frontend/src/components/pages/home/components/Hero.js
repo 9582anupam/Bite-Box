@@ -9,7 +9,7 @@ const Hero = () => {
             // style={{ backgroundImage: `url(${HeroBg})` }}
         >
             <div className="w-10/12">
-                <div className=" md:w-[70%] lg:w-[40%] flex flex-col mt-10 md:justify-center h-full gap-6 md:gap-4 md:ml-24 lg:ml-16">
+                <div className=" md:w-[70%] lg:w-[40%] flex flex-col mt-10 pt-[2%] h-full gap-6 md:gap-4 md:ml-24 lg:ml-16">
                     <p className="font-merriweathers font-bold text-[3.3rem] sm:text-[4rem]  md:text-[4.4rem] leading-none">
                         Freshness Delivered to Your Doorstep
                     </p>
