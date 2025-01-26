@@ -48,7 +48,7 @@ const ProductCard = ({ product }) => {
 
     return (
         <div>
-            <div className="flex pt-20 font-poppins text-lg sm:justify- sm:items-start items-center sm:flex-row flex-col mx-auto ">
+            <div className="flex pt-20 font-poppins text-lg sm:items-start items-center sm:flex-row flex-col mx-auto ">
                 <div
                     className="relative sm:mx-0 w-fit sm:w-auto"
                     onMouseLeave={() => setIsHovering(false)}

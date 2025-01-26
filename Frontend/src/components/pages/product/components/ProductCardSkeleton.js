@@ -1,7 +1,7 @@
 const ProductCardSkeleton = () => {
     return (
         <div>
-            <div className="flex pt-20 font-poppins text-lg sm:justify-evenly sm:flex-row flex-col sm:w-auto w-fit mx-auto sm:mx-0">
+            <div className="flex pt-20 font-poppins text-lg sm:items-start items-center sm:flex-row flex-col mx-auto">
                 <div className="relative sm:mx-0 w-fit sm:w-auto">
                     <div className="h-[22rem] w-[20rem] sm:h-[24rem] sm:w-[22rem] md:h-[28rem] md:w-[25rem] lg:h-[30rem] lg:w-[28rem] border-2 border-gray-300 rounded-md shadow-xl shimmer"></div>
                 </div>
