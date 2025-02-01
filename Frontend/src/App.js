@@ -7,15 +7,10 @@ import { useState, useEffect, useRef } from "react";
 import Sidebar from "./components/common/sidebar/Sidebar";
 import Category from "./components/pages/category/Category";
 import SearchBar from "./components/common/SearchBar";
+import Footer from "./components/common/footer/Footer";
 import "./components/common/sidebar/sidebar.css";
-import Footerr from "./components/common/footer/Footerr";
 import Product from "./components/pages/product/Product";
 import ScrollToTop from "./components/common/ScrollToTop";
-import Login from "./components/pages/auth/Login";
-import Signup from "./components/pages/auth/Signup";
-import ProtectedRoutes from "./routes/ProtectedRoutes";
-import Unauthenticated from "./routes/Unauthenticated";
-import UserProvider from "./context/UserContext";
 
 function App() {
     const [isSidebarActive, setIsSidebarActive] = useState(false);
@@ -45,61 +40,39 @@ function App() {
 
     return (
         <BrowserRouter>
-            <UserProvider>
-                <ScrollToTop />
-                <div className="App">
-
-                    {/* HEADER-NAVBAR-SIDEBAR */}
-                    <div className="fixed z-40 w-full">
-                        <div
-                            className={`${isSidebarActive ? "active" : ""
-                                } sidebar-parent z-50`}
-                            ref={sidebarRef}>
-                            <Sidebar />
-                        </div>
-                        <Header
-                            isSidebarActive={isSidebarActive}
-                            setIsSidebarActive={setIsSidebarActive}
-                            headerRef={headerRef}
-                        />
-                        <NavBar />
-                        <div className="min-h-12 md:hidden block">
-                            <SearchBar size={"medium"} />
-                        </div>
-                        {/* <Location /> */}
+            <ScrollToTop />
+            <div className="App">
+                <div className="fixed z-40 w-full">
+                    <div
+                        className={`${isSidebarActive ? "active" : ""
+                            } sidebar-parent z-50`}
+                        ref={sidebarRef}>
+                        <Sidebar />
                     </div>
-
-
-                    {/* CONTENT */}
-                    <div className="content-wrapper pt-32">
-                        <Routes>
-                            {/* Public Routes - No Auth Needed */}
-                            <Route path="/" element={<Home />} />
-                            <Route path="/category/:id" element={<Category />} />
-                            <Route path="/product/:id" element={<Product />} />
-
-                            {/* Unauthenticated Routes - Only Accessible When Logged Out */}
-                            <Route element={<Unauthenticated />}>
-                                <Route path="/login" element={<Login />} />
-                                <Route path="/signup" element={<Signup />} />
-                            </Route>
-
-                            {/* Protected Routes - Only Accessible When Logged In */}
-                            <Route element={<ProtectedRoutes />}>
-                                {/* <Route path="/profile" element={<div>Dashboard</div>} /> */}
-                            </Route>
-
-                        </Routes>
+                    <Header
+                        isSidebarActive={isSidebarActive}
+                        setIsSidebarActive={setIsSidebarActive}
+                        headerRef={headerRef}
+                    />
+                    <NavBar />
+                    <div className="min-h-12 md:hidden block">
+                        <SearchBar size={"medium"} />
                     </div>
-
-                    {/* FOOTER */}
-                    <div>
-                        <Footerr />
-                    </div>
+                    {/* <Location /> */}
                 </div>
-            </UserProvider>
+                <div className="content-wrapper pt-32">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/category/:id" element={<Category />} />
+                        <Route path="/product/:id" element={<Product />} />
+                    </Routes>
+                </div>
+                <div>
+                    <Footer />
+                </div>
+            </div>
         </BrowserRouter>
     );
-};
+}
 
 export default App;

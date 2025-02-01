@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import "./footer.css";
 
-const Footerr = () => {
+const Footer = () => {
     const quickLinks = [
         "about",
         "contact",
@@ -123,4 +123,4 @@ const Footerr = () => {
     );
 };
 
-export default Footerr;
+export default Footer;
