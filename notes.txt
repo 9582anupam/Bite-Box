@@ -1,3 +1,14 @@
 top rated: based on rating
 top offers: based on discount
 todays deal: random 30
+
+
+
+// when frontend receives 403 that means user access token is expired, need to refresh access token
+- access token not found
+- acccess token found but expired and can not be regenerated for some reason
+- access token found but is invalid
+- refresh token not found in cookie
+- refresh token found but is invalid
+
+// while refreshing access token if receives another error typically 500 it suggestes that refresh token is also expired, need to relogin.

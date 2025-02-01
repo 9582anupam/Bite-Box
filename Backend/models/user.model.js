@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const userSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: true,
-            unique: true,
+            required: true
         },
         email: {
             type: String,
@@ -48,7 +48,13 @@ const userSchema = new mongoose.Schema(
         },
         cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
         orderHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
+
+        refreshToken: {
+            type: String, // The refresh token itself
+            default: null,
+        },
     },
+
     { timestamps: true }
 );
 
@@ -74,6 +80,36 @@ userSchema.methods.isPasswordCorrect = async function (candidatePassword) {
     }
 };
 
+
+// Generate access token
+userSchema.methods.generateAccessToken = async function () {
+    return jwt.sign(
+        {
+            _id: this._id,
+            // username: this.username,
+            email: this.email,
+            name: this.name,
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+            expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+        }
+    );
+};
+
+
+// Generate refresh token
+userSchema.methods.generateRefreshToken = async function () {
+    return jwt.sign(
+        {
+            _id: this._id,
+        },
+        process.env.REFRESH_TOKEN_SECRET,
+        {
+            expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
+        }
+    );
+};
 
 const User = mongoose.model("User", userSchema);
 

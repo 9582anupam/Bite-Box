@@ -7,9 +7,10 @@ const app = express();
 
 // Middleware Setup
 const corsOptions = {
-    origin: [ "https://bite-box-rose.vercel.app"], // Allow your frontend domain and others
+    origin: ["https://bite-box-rose.vercel.app", "http://localhost:3000"], // Allow your frontend domain and others
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true, // Enable cookies in requests and responses
 };
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }));
