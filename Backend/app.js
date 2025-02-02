@@ -22,4 +22,9 @@ app.use(express.json()); // Parse JSON requests
 // Declare API routes
 app.use("/api", apiRoutes); // Attach all API routes
 
+// health check api
+app.get("/", (req, res) => {
+    res.send("API is running");
+});
+
 export { app };
