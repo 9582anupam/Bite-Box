@@ -56,8 +56,8 @@ const GoogleButton = styled(Button)(({ theme }) => ({
 }));
 
 const Login = () => {
-    const [email, setEmail] = useState("9582anupamk@gmail.com");
-    const [password, setPassword] = useState("sample");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState("");
     const [generalError, setGeneralError] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
